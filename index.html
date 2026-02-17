@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Solario | Ontario's Trusted Solar Installer - Toronto &amp; GTA</title>
+    <meta
+      name="description"
+      content="Solario installs premium solar systems, EV chargers, battery storage, and heat pumps for Ontario homes and businesses."
+    />
+
+    <!-- Favicons / App Icons -->
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0b1220" />
+  </head>
+
+  <body>
+    <!-- Netlify Forms detector (required for SPA builds) -->
+    <form
+      name="quote"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="quote" />
+      <input name="bot-field" />
+
+      <input name="firstName" />
+      <input name="lastName" />
+      <input name="email" />
+      <input name="phone" />
+      <input name="address" />
+      <select name="service">
+        <option value="solar">Residential Solar</option>
+        <option value="ev">EV Charging Station</option>
+        <option value="battery">Battery Storage</option>
+        <option value="heatpump">Heat Pump</option>
+        <option value="multiple">Multiple Services</option>
+      </select>
+      <select name="roofType">
+        <option value="shingle">Asphalt Shingle</option>
+        <option value="metal">Metal</option>
+        <option value="tile">Tile</option>
+        <option value="flat">Flat Roof</option>
+        <option value="other">Other</option>
+      </select>
+      <textarea name="details"></textarea>
+    </form>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
