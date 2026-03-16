@@ -39,14 +39,14 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto h-full">
-        <nav className="flex items-center justify-between h-full">
+      <div className="container mx-auto h-full px-4 sm:px-0">
+        <nav className="flex items-center justify-between h-full gap-2">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center shrink-0">
             <img 
               src={solarioLogo} 
               alt="Solario" 
-              className="h-9 w-auto"
+              className="h-11 w-auto"
             />
           </Link>
 
@@ -81,9 +81,9 @@ const Navbar = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - min 44px tap target */}
           <button
-            className="lg:hidden text-foreground p-2"
+            className="lg:hidden text-foreground p-3 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center touch-manipulation"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -98,30 +98,32 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-navy-dark border-t border-border animate-fade-in">
-          <div className="py-4 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`block px-6 py-3 text-sm font-medium transition-colors ${
-                  location.pathname === link.path
-                    ? "text-primary bg-secondary"
-                    : "text-foreground/70 hover:text-foreground hover:bg-secondary"
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <div className="px-6 pt-4 space-y-3 border-t border-border mt-2">
+        <div className="lg:hidden bg-navy-dark border-t border-border animate-fade-in overflow-x-hidden">
+          <div className="py-3 px-4">
+            <nav className="space-y-0.5" aria-label="Mobile navigation">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`block px-4 py-3.5 text-base font-medium rounded-lg transition-colors touch-manipulation min-h-[48px] flex items-center ${
+                    location.pathname === link.path
+                      ? "text-primary bg-secondary"
+                      : "text-foreground/90 hover:text-foreground active:bg-secondary"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </nav>
+            <div className="px-4 pt-3 pb-2 space-y-3 border-t border-border mt-3">
               <a
                 href="tel:+13823420754"
-                className="flex items-center gap-2 text-foreground/70 text-sm"
+                className="flex items-center gap-3 text-foreground/90 text-base py-3 min-h-[48px] touch-manipulation"
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-5 h-5 shrink-0 text-primary" />
                 <span>+1 (382) 342-0754</span>
               </a>
-              <Button variant="hero" size="default" className="w-full" asChild>
+              <Button variant="hero" size="lg" className="w-full min-h-[48px] touch-manipulation" asChild>
                 <Link to="/contact">Get Free Quote</Link>
               </Button>
             </div>

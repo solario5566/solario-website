@@ -19,6 +19,7 @@ import SolarInstallation from "./pages/services/SolarInstallation";
 import EVCharging from "./pages/services/EVCharging";
 import BatteryStorage from "./pages/services/BatteryStorage";
 import HeatPumps from "./pages/services/HeatPumps";
+import LocationSolarPage from "./pages/location/LocationSolarPage";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,16 @@ const App = () => (
           <Route path="/services/ev-charging" element={<EVCharging />} />
           <Route path="/services/battery-storage" element={<BatteryStorage />} />
           <Route path="/services/heat-pumps" element={<HeatPumps />} />
+          <Route path="/solar-installation-toronto" element={<LocationSolarPage cityKey="toronto" />} />
+          <Route path="/solar-installation-mississauga" element={<LocationSolarPage cityKey="mississauga" />} />
+          <Route path="/solar-installation-vaughan" element={<LocationSolarPage cityKey="vaughan" />} />
+          <Route path="/solar-installation-markham" element={<LocationSolarPage cityKey="markham" />} />
+          <Route path="/solar-installation-richmond-hill" element={<LocationSolarPage cityKey="richmond-hill" />} />
+          <Route path="/solar-installation-brampton" element={<LocationSolarPage cityKey="brampton" />} />
+          <Route path="/solar-installation-oakville" element={<LocationSolarPage cityKey="oakville" />} />
+          <Route path="/solar-installation-hamilton" element={<LocationSolarPage cityKey="hamilton" />} />
+          <Route path="/solar-installation-waterloo" element={<LocationSolarPage cityKey="waterloo" />} />
+          <Route path="/solar-installation-kitchener" element={<LocationSolarPage cityKey="kitchener" />} />
           <Route path="/certifications" element={<Certifications />} />
           <Route path="/about" element={<About />} />
           <Route path="/finance" element={<Finance />} />

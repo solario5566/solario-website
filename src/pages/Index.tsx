@@ -14,8 +14,18 @@ const Index = () => {
   return (
     <PageLayout>
       <SEO
-        title="Solario | Ontario's Trusted Solar Installer - Toronto & GTA"
-        description="Solario installs premium solar systems, EV chargers, battery storage, and heat pumps for Ontario homes and businesses. 25-year warranty. Free quotes."
+        title="Solar Panel Installation Ontario | Solario Energy"
+        description="Solario Energy provides professional solar panel installation across Ontario including Toronto, Mississauga, Vaughan, and surrounding cities. 25-year panel warranty and financing available."
+        keywords={[
+          "solar panel installation ontario",
+          "solar panel installation",
+          "commercial solar installation",
+          "solar maintenance",
+          "solar installers",
+          "solar companies",
+          "solar installers toronto",
+          "solar company mississauga",
+        ]}
         path="/"
       />
       <OrganizationSchema />

@@ -25,9 +25,9 @@ const trustItems = [
 
 const TrustBar = () => {
   return (
-    <section className="bg-navy-dark py-10 md:py-12">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+    <section className="bg-navy-dark py-8 sm:py-10 md:py-12 overflow-x-hidden">
+      <div className="container mx-auto px-4 sm:px-0">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {trustItems.map((item, index) => (
             <div
               key={index}

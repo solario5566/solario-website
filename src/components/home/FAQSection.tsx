@@ -49,9 +49,9 @@ const FAQSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 max-w-5xl mx-auto">
           {/* Left - Header */}
           <div className="lg:col-span-2">
-            <p className="text-primary font-semibold text-sm mb-2">FAQ</p>
+            <p className="text-primary font-semibold text-sm mb-2">Frequently Asked Questions</p>
             <h2 className="text-3xl md:text-4xl font-bold text-section-light-foreground mb-4">
-              Questions? We've Got Answers.
+              Frequently Asked Questions
             </h2>
             <p className="text-muted-foreground mb-6">
               Everything you need to know about going solar with Solario.
@@ -70,7 +70,7 @@ const FAQSection = () => {
                   value={`item-${index}`}
                   className="bg-section-gray border border-gray-200 rounded-lg px-5 data-[state=open]:shadow-md transition-all"
                 >
-                  <AccordionTrigger className="text-left text-sm font-semibold text-section-light-foreground hover:text-primary hover:no-underline py-4">
+                  <AccordionTrigger className="text-left text-sm font-semibold text-section-light-foreground hover:text-primary hover:no-underline py-4 min-h-[48px] flex items-center touch-manipulation">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-sm pb-4">

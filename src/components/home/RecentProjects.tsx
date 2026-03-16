@@ -84,15 +84,14 @@ const RecentProjects = () => {
       <div className="container mx-auto">
         {/* Header with SEO-rich copy */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <p className="text-primary font-semibold text-sm mb-2">Recent Projects</p>
+          <p className="text-primary font-semibold text-sm mb-2">Solar Projects Across the GTA</p>
           <h2 className="text-3xl md:text-4xl font-bold text-section-light-foreground mb-4">
-            Solar Installations Across Ontario
+            Solar Projects Across the GTA
           </h2>
           <p className="text-muted-foreground leading-relaxed">
-            From residential rooftops in Toronto and Brampton to large-scale commercial arrays
-            in Ottawa and Caledon, Solario delivers certified solar installations across the
-            Greater Toronto Area and beyond. Explore our recent projects to see the impact of
-            going solar in Ontario.
+            From residential rooftop solar panel installation in Toronto and Brampton to large-scale commercial
+            solar systems in Ottawa and Caledon, Solario delivers certified solar projects across the Greater
+            Toronto Area and throughout Ontario.
           </p>
         </div>
 

@@ -22,11 +22,11 @@ const buttonVariants = cva(
         cta: "bg-navy-dark text-foreground hover:bg-navy shadow-lg hover:-translate-y-0.5",
       },
       size: {
-        default: "h-11 px-6 rounded-md",
-        sm: "h-9 px-4 text-sm rounded-md",
-        lg: "h-12 px-8 rounded-md",
-        xl: "h-14 px-10 text-base rounded-md",
-        icon: "h-10 w-10",
+        default: "h-11 min-h-[44px] px-6 rounded-md touch-manipulation",
+        sm: "h-9 min-h-[40px] px-4 text-sm rounded-md touch-manipulation",
+        lg: "h-12 min-h-[48px] px-8 rounded-md touch-manipulation",
+        xl: "h-14 min-h-[52px] px-10 text-base rounded-md touch-manipulation",
+        icon: "h-10 w-10 min-w-[44px] min-h-[44px] touch-manipulation",
       },
     },
     defaultVariants: {

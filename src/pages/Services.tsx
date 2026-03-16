@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import PageLayout from "@/components/layout/PageLayout";
+import PageHero from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/button";
-import { Sun, Zap, Battery, Flame, Check, ArrowRight } from "lucide-react";
+import { Sun, Zap, Battery, Flame, Wrench, Check, ArrowRight, ShieldCheck, Users, FileCheck, Headphones } from "lucide-react";
 import CTASection from "@/components/home/CTASection";
 import SEO from "@/components/SEO";
 
@@ -25,6 +26,26 @@ const services = [
       "Increase your home value by up to 4%",
       "Protect against rising energy costs",
       "Reduce your carbon footprint significantly",
+    ],
+  },
+  {
+    id: "repair",
+    icon: Wrench,
+    title: "Solar Repair / Panel Upgrade",
+    description:
+      "Diagnose issues, replace damaged components, and upgrade older solar panel systems for better safety, reliability, and performance.",
+    features: [
+      "Diagnosis of underperforming or faulty systems",
+      "Replacement of damaged panels and components",
+      "Upgrade paths for older systems",
+      "Safety and performance assessments",
+      "Work performed by licensed technicians",
+    ],
+    benefits: [
+      "Restore system output and reliability",
+      "Extend the life of your investment",
+      "Improve safety and code compliance",
+      "Professional assessment with no obligation",
     ],
   },
   {
@@ -96,56 +117,91 @@ const Services = () => {
   return (
     <PageLayout>
       <SEO title="Our Services" description="Complete energy solutions: solar panels, EV chargers, battery storage, and heat pumps for Ontario homes and businesses." path="/services" />
-      {/* Hero Section */}
-      <section className="pt-28 pb-12 bg-navy">
-        <div className="container mx-auto">
-          <div className="max-w-2xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Our Services
-            </h1>
-            <p className="text-muted-foreground">
-              Complete energy solutions for your home or business. From solar panels to EV chargers, we deliver professional installation with industry-leading warranties.
-            </p>
+      <PageHero
+        eyebrow="Our Services"
+        title="Complete energy solutions for your home or business"
+        subtitle="Solar, EV charging, battery storage, heat pumps, and solar repair."
+        description="Professional installation with industry-leading warranties and full support from design through completion. We help Ontario homeowners and businesses choose the right system and get it installed correctly."
+        compact
+      />
+
+      {/* Why choose Solario */}
+      <section className="py-10 sm:py-14 bg-secondary overflow-x-hidden">
+        <div className="container mx-auto px-4 sm:px-0">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-xl sm:text-2xl font-bold text-foreground text-center mb-8">
+              Why choose Solario for your project
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { icon: ShieldCheck, title: "Licensed & insured", text: "ESA licensed, TSSA registered, and fully insured for your peace of mind." },
+                { icon: Users, title: "In-house teams", text: "Our own technicians handle every install—no subcontractors." },
+                { icon: FileCheck, title: "Permits handled", text: "We manage design, permits, and inspections from start to finish." },
+                { icon: Headphones, title: "Support after install", text: "Ongoing support for questions and performance." },
+              ].map((item, i) => (
+                <div key={i} className="flex gap-4">
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <item.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Services Detail */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto">
-          <div className="space-y-20">
+      <section className="py-12 sm:py-16 md:py-20 bg-background overflow-x-hidden">
+        <div className="container mx-auto px-4 sm:px-0">
+          <div className="max-w-5xl mx-auto mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-3">
+              What we offer
+            </h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto">
+              From new solar installations to repairs, EV charging, battery storage, and heat pumps—we deliver the same standard of quality and support across every service.
+            </p>
+          </div>
+          <div className="space-y-16 sm:space-y-24">
             {services.map((service, index) => (
               <div
                 key={service.id}
                 id={service.id}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-start ${
+                className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start ${
                   index % 2 === 1 ? "lg:flex-row-reverse" : ""
                 }`}
               >
                 {/* Content */}
                 <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                  <div className="flex items-center gap-4 mb-5">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                       <service.icon className="w-6 h-6 text-primary" />
                     </div>
-                    <h2 className="text-2xl font-bold text-foreground">
-                      {service.title}
-                    </h2>
+                    <div>
+                      <span className="text-xs font-semibold text-primary uppercase tracking-wider">
+                        Service {index + 1}
+                      </span>
+                      <h2 className="text-xl sm:text-2xl font-bold text-foreground">
+                        {service.title}
+                      </h2>
+                    </div>
                   </div>
-                  <p className="text-muted-foreground mb-6">
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
                     {service.description}
                   </p>
 
-                  {/* Features */}
                   <div className="mb-6">
-                    <h3 className="text-base font-semibold text-foreground mb-3">
-                      What's Included
+                    <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">
+                      What's included
                     </h3>
-                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {service.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-2">
                           <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground text-sm">
+                          <span className="text-muted-foreground text-sm leading-relaxed">
                             {feature}
                           </span>
                         </li>
@@ -161,19 +217,18 @@ const Services = () => {
                   </Button>
                 </div>
 
-                {/* Benefits Card */}
-                <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                  <div className="bg-card border border-border rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-foreground mb-5">
-                      Key Benefits
+                <div className={index % 2 === 1 ? "lg:order-1" : ""}>
+                  <div className="bg-card border border-border rounded-xl p-6 sm:p-7">
+                    <h3 className="text-base font-semibold text-foreground uppercase tracking-wider mb-4">
+                      Key benefits
                     </h3>
-                    <ul className="space-y-3">
+                    <ul className="space-y-3.5">
                       {service.benefits.map((benefit, idx) => (
                         <li key={idx} className="flex items-start gap-3">
                           <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
                             <Check className="w-3 h-3 text-primary-foreground" />
                           </div>
-                          <span className="text-foreground">
+                          <span className="text-foreground text-sm sm:text-base leading-relaxed">
                             {benefit}
                           </span>
                         </li>
@@ -183,6 +238,38 @@ const Services = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our approach */}
+      <section className="py-12 sm:py-16 bg-secondary overflow-x-hidden">
+        <div className="container mx-auto px-4 sm:px-0">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-3">
+              How we work with you
+            </h2>
+            <p className="text-muted-foreground text-center mb-10">
+              A clear process from first contact to completion.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                { step: "1", title: "Consultation & assessment", text: "We review your property and goals and provide clear options." },
+                { step: "2", title: "Design & proposal", text: "Tailored system design and transparent quote." },
+                { step: "3", title: "Installation", text: "Our crew handles the install, permits, and inspections." },
+                { step: "4", title: "Support", text: "Ongoing support and monitoring after activation." },
+              ].map((item) => (
+                <div key={item.step} className="flex gap-4 bg-card border border-border rounded-xl p-5">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary font-bold">
+                    {item.step}
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

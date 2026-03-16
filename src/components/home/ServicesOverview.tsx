@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SunDim, PlugZap, BatteryCharging, ThermometerSun, ArrowRight } from "lucide-react";
+import { SunDim, PlugZap, BatteryCharging, ThermometerSun, Wrench, ArrowRight } from "lucide-react";
 
 const services = [
   {
@@ -11,6 +11,16 @@ const services = [
       "Eliminate 70-100% of electricity bill",
       "Add value to property",
       "Net metering credits",
+    ],
+  },
+  {
+    icon: Wrench,
+    title: "Solar Repair / Panel Upgrade",
+    description: "Repair underperforming systems, replace damaged components, and upgrade older panels.",
+    features: [
+      "Repair & troubleshooting",
+      "Panel and component replacement",
+      "Performance assessment",
     ],
   },
   {
@@ -47,25 +57,25 @@ const services = [
 
 const ServicesOverview = () => {
   return (
-    <section className="section-padding bg-section-light">
-      <div className="container mx-auto">
+    <section className="section-padding bg-section-light overflow-x-hidden">
+      <div className="container mx-auto px-4 sm:px-0">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <p className="text-primary font-semibold text-sm mb-2">Our Services</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-section-light-foreground mb-4">
-            Everything You Need to Power Your Home
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+          <p className="text-primary font-semibold text-sm mb-2">Residential Solar Installation</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-section-light-foreground mb-3 sm:mb-4">
+            Residential Solar Installation
           </h2>
           <p className="text-muted-foreground">
-            From solar panels to EV chargers, we provide complete energy solutions designed to maximize your savings.
+            We design and install high-efficiency residential solar panel systems across Ontario so homeowners can reduce electricity bills and take control of their energy.
           </p>
         </div>
 
         {/* Service Cards - 2x2 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
           {services.map((service, index) => (
             <div
               key={index}
-              className="group bg-section-light border border-gray-200 rounded-lg p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 relative"
+              className="group bg-section-light border border-gray-200 rounded-lg p-5 sm:p-6 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 relative"
             >
               {/* Badge */}
               {service.badge && (

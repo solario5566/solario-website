@@ -4,9 +4,9 @@ import solarioLogo from "@/assets/solario-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-navy-dark border-t border-border">
-      <div className="container mx-auto py-12 md:py-14">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+    <footer className="bg-navy-dark border-t border-border overflow-x-hidden">
+      <div className="container mx-auto py-10 sm:py-12 md:py-14 px-4 sm:px-0">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Logo & Description */}
           <div className="col-span-2 md:col-span-1">
             <Link to="/" className="inline-block mb-4">
@@ -38,7 +38,7 @@ const Footer = () => {
               </a>
               <div className="flex items-start gap-2 text-muted-foreground text-sm">
                 <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                136 Winges Rd, Vaughan, ON L4L 6C3
+                92 Westra Drive, Guelph, ON N1K 1Z7
               </div>
             </div>
           </div>
@@ -46,24 +46,29 @@ const Footer = () => {
           {/* Services */}
           <div>
             <h4 className="font-semibold text-foreground mb-4 text-sm">Services</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-0.5">
               <li>
-                <Link to="/services/solar-installation" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <Link to="/services/solar-installation" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   Solar Installation
                 </Link>
               </li>
               <li>
-                <Link to="/services/ev-charging" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <Link to="/services#repair" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
+                  Solar Repair
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/ev-charging" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   EV Charging
                 </Link>
               </li>
               <li>
-                <Link to="/services/battery-storage" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <Link to="/services/battery-storage" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   Battery Storage
                 </Link>
               </li>
               <li>
-                <Link to="/services/heat-pumps" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <Link to="/services/heat-pumps" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   Heat Pumps
                 </Link>
               </li>
@@ -73,24 +78,24 @@ const Footer = () => {
           {/* Company */}
           <div>
             <h4 className="font-semibold text-foreground mb-4 text-sm">Company</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-0.5">
               <li>
-                <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <Link to="/about" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <Link to="/contact" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link to="/certifications" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <Link to="/certifications" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   Certifications
                 </Link>
               </li>
               <li>
-                <Link to="/projects" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <Link to="/projects" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   Projects
                 </Link>
               </li>
@@ -100,14 +105,14 @@ const Footer = () => {
           {/* Legal */}
           <div>
             <h4 className="font-semibold text-foreground mb-4 text-sm">Legal</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-0.5">
               <li>
-                <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <Link to="/privacy" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+                <Link to="/terms" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   Terms of Service
                 </Link>
               </li>
@@ -116,11 +121,19 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-border pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-          <p className="text-muted-foreground text-sm">
+        <div className="border-t border-border pt-5 sm:pt-6 grid grid-cols-1 md:grid-cols-3 items-center gap-4 md:gap-3 text-center md:text-left">
+          <p className="text-muted-foreground text-sm text-center md:text-left">
             © 2026 Solario Energy Inc. All rights reserved.
           </p>
-          <p className="text-muted-foreground/60 text-xs">
+          <a
+            href="https://nazxmedia.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground/80 text-xs text-center hover:underline hover:opacity-90 transition-colors"
+          >
+            Engineered by NazxMedia
+          </a>
+          <p className="text-muted-foreground/60 text-xs text-center md:text-right">
             ESA Licensed • TSSA Registered • Tesla Certified • NABCEP Certified
           </p>
         </div>

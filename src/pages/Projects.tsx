@@ -1,4 +1,5 @@
 import PageLayout from "@/components/layout/PageLayout";
+import PageHero from "@/components/layout/PageHero";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { MapPin, Sun, DollarSign, Calendar, Home, Building } from "lucide-react";
@@ -103,24 +104,17 @@ const Projects = () => {
   return (
     <PageLayout>
       <SEO title="Projects" description="Browse Solario's portfolio of solar installations across the GTA. Residential and commercial projects with real savings data." path="/projects" />
-      {/* Hero */}
-      <section className="pt-28 pb-12 bg-navy">
-        <div className="container mx-auto">
-          <div className="max-w-2xl mx-auto text-center">
-            <p className="text-primary font-semibold text-sm mb-2">Our Portfolio</p>
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              See Our Work Across Ontario
-            </h1>
-            <p className="text-muted-foreground">
-              Browse our portfolio of successful solar installations throughout the Greater Toronto Area.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Our Portfolio"
+        title="See our work across Ontario"
+        subtitle="Residential and commercial solar installations throughout the GTA."
+        description="Browse successful projects and real savings data from our team."
+        compact
+      />
 
       {/* Projects Grid */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto">
+      <section className="py-10 sm:py-16 bg-background overflow-x-hidden">
+        <div className="container mx-auto px-4 sm:px-0">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
               <div
@@ -181,9 +175,9 @@ const Projects = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gradient-orange">
-        <div className="container mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
+      <section className="py-12 sm:py-16 bg-gradient-orange overflow-x-hidden">
+        <div className="container mx-auto text-center px-4 sm:px-0">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
             Ready to Be Our Next Project?
           </h2>
           <p className="text-primary-foreground/90 mb-6 max-w-xl mx-auto">

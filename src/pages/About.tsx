@@ -1,5 +1,24 @@
+import { Link } from "react-router-dom";
 import PageLayout from "@/components/layout/PageLayout";
-import { Home, Users, Star, Calendar, Heart, Shield, Wrench, Target } from "lucide-react";
+import PageHero from "@/components/layout/PageHero";
+import { Button } from "@/components/ui/button";
+import {
+  Home,
+  Users,
+  Star,
+  Calendar,
+  Heart,
+  Shield,
+  Wrench,
+  Target,
+  FileCheck,
+  MessageSquare,
+  LayoutList,
+  Zap,
+  Headphones,
+  Check,
+  ArrowRight,
+} from "lucide-react";
 import CTASection from "@/components/home/CTASection";
 import SEO from "@/components/SEO";
 
@@ -10,92 +29,221 @@ const stats = [
   { icon: Star, value: "4.9", label: " Rating" },
 ];
 
-const timeline = [
-  { year: "2009", event: "Company founded in Toronto" },
-  { year: "2012", event: "100th installation completed" },
-  { year: "2015", event: "Rebranded To Solario" },
-  { year: "2018", event: "Finance Team Setup" },
-  { year: "2021", event: "EV charging services launched" },
-  { year: "2026", event: "1,500+ systems installed" },
+const differentiators = [
+  {
+    icon: Shield,
+    title: "Quality-first installation standards",
+    description:
+      "We do not rush jobs. Every installation is completed to code, to manufacturer specs, and to a standard we stand behind. Clean workmanship and reliable execution are non-negotiable.",
+  },
+  {
+    icon: MessageSquare,
+    title: "Clear, honest guidance",
+    description:
+      "We explain your options in plain language. No pressure, no overselling. If a smaller system or a different approach makes more sense for you, we say so. You get recommendations you can trust.",
+  },
+  {
+    icon: LayoutList,
+    title: "End-to-end project coordination",
+    description:
+      "From consultation and design through permits, installation, inspection, and activation—we manage the process. You get a single point of contact and a clear path to completion.",
+  },
+  {
+    icon: Zap,
+    title: "Built for long-term performance",
+    description:
+      "Systems are designed and installed for reliability and warranty validity. We use quality equipment and follow best practices so your investment performs for years.",
+  },
+  {
+    icon: Headphones,
+    title: "Professional support from start to finish",
+    description:
+      "Questions before, during, or after the install are answered by our team. We are here for the life of your system, not just the installation day.",
+  },
+  {
+    icon: Wrench,
+    title: "In-house installation teams",
+    description:
+      "Our own trained and certified technicians handle every installation. No subcontractors. You get consistent quality and direct accountability.",
+  },
+];
+
+const processSteps = [
+  {
+    step: "1",
+    title: "Consultation & assessment",
+    description:
+      "We review your property, energy use, and goals. You get clear options and honest advice—no obligation.",
+  },
+  {
+    step: "2",
+    title: "System design & proposal",
+    description:
+      "A tailored design and transparent quote. We explain equipment, timeline, incentives, and what to expect.",
+  },
+  {
+    step: "3",
+    title: "Installation & approvals",
+    description:
+      "Our crew handles the install, permits, and inspections. We coordinate with utilities and authorities so the process stays smooth.",
+  },
+  {
+    step: "4",
+    title: "Ongoing support",
+    description:
+      "After activation, we remain your partner. Questions about performance, monitoring, or maintenance—we are here to help.",
+  },
 ];
 
 const values = [
   {
     icon: Heart,
-    title: "Honesty Over Sales",
+    title: "Honesty over sales",
     description:
-      "We'll always tell you the truth about what your home needs—even if it means recommending a smaller system or no solar at all.",
+      "We tell you what your property actually needs. If that means a smaller system or no solar at all, we say so. No pressure, no inflated recommendations.",
   },
   {
     icon: Shield,
-    title: "Quality Over Speed",
+    title: "Quality over speed",
     description:
-      "We never rush an installation. Every connection, every panel, every wire is done right the first time, every time.",
+      "Every connection, every panel, every wire is done right the first time. We do not cut corners to hit a date.",
   },
   {
     icon: Wrench,
-    title: "In-House Teams",
+    title: "In-house teams only",
     description:
-      "No subcontractors. Our own trained and certified technicians handle every installation from start to finish.",
+      "No subcontractors. Our trained technicians handle every installation from start to finish. You know who is on your roof.",
   },
   {
     icon: Target,
-    title: "Long-Term Thinking",
+    title: "Long-term thinking",
     description:
-      "We build relationships, not transactions. We're here for the life of your system—25 years and beyond.",
+      "We build relationships, not one-off jobs. We are here for the life of your system—25 years and beyond.",
   },
+];
+
+const standardsList = [
+  "Safety and code compliance on every job",
+  "Transparent communication from quote to completion",
+  "Accountability for workmanship and outcomes",
+  "Customer-first recommendations, not upsells",
+  "Documentation and clarity so you know what you are getting",
+];
+
+const whyChooseUs = [
+  "Clear communication at every stage",
+  "Organized execution with minimal hassle",
+  "Quality-focused installations you can trust",
+  "Support that continues after the install",
+  "A team that treats your home like their own",
 ];
 
 const About = () => {
   return (
     <PageLayout>
-      <SEO title="About Us" description="Ontario's trusted solar installer since 2009. 1,500+ systems installed with a 4.9-star rating. Meet the Solario team." path="/about" />
-      {/* Hero Section */}
-      <section className="pt-28 pb-12 bg-navy">
-        <div className="container mx-auto">
-          <div className="max-w-2xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              About Solario
-            </h1>
-            <p className="text-muted-foreground">
-              Ontario's trusted solar installer since 2009. Helping homeowners and businesses harness the power of the sun.
-            </p>
+      <SEO
+        title="About Us"
+        description="Ontario's trusted solar installer. 1,500+ systems installed. Professional solar solutions with quality, clarity, and care. Meet the Solario team."
+        path="/about"
+      />
+
+      <PageHero
+        eyebrow="About Solario"
+        title="Trusted solar expertise, built for long-term value"
+        subtitle="A better standard for residential and commercial solar in Ontario."
+        description="Solario focuses on quality installations, clear guidance, and a professional customer experience. We help homeowners and businesses adopt solar with confidence—backed by licensing, insurance, and a team that stands behind its work."
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="bg-card border border-border rounded-lg p-4 text-center"
+            >
+              <stat.icon className="w-5 h-5 text-primary mx-auto mb-1.5" />
+              <div className="text-xl font-bold text-foreground">{stat.value}</div>
+              <div className="text-xs text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </PageHero>
+
+      {/* 2. Company story / mission */}
+      <section className="py-12 sm:py-16 md:py-20 bg-background overflow-x-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Built around better solar experiences
+            </h2>
+            <div className="text-muted-foreground space-y-4 leading-relaxed">
+              <p>
+                Solario exists to make solar adoption straightforward, reliable, and worth the investment. We focus on doing the job properly—quality workmanship, honest recommendations, and a smooth process from first contact to long-term support.
+              </p>
+              <p>
+                We are not here to oversell or rush installations. We are here to design and install systems that perform, to communicate clearly at every step, and to stand behind our work. Our reputation is built on customers who trust us with a major home investment and feel confident in their choice.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-foreground mb-5">
-              Why We Started Solario
+      {/* 3. What makes Solario different */}
+      <section className="py-12 sm:py-16 md:py-20 bg-secondary overflow-x-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">
+              What makes Solario different
             </h2>
-            <div className="text-muted-foreground space-y-4">
-              <p>
-                Solario was founded in 2009 with a simple mission: to make solar energy accessible, affordable, and hassle-free for Ontario homeowners and businesses.
-              </p>
-              <p>
-                We saw an industry plagued by pushy salespeople, confusing pricing, and questionable installation quality. We knew there had to be a better way—an honest approach that puts customers first and delivers real value.
-              </p>
-              <p>
-                Today, with over 2,400 installations and 15 years of experience, we've become one of Ontario's most trusted solar companies. Our success comes from our commitment to honesty, quality workmanship, and long-term customer relationships.
-              </p>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-              {stats.map((stat, index) => (
+            <p className="text-muted-foreground text-center mb-10 md:mb-12 max-w-2xl mx-auto">
+              We differentiate through clarity, quality, and accountability—not hype.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {differentiators.map((item, index) => (
                 <div
                   key={index}
-                  className="bg-card border border-border rounded-lg p-5 text-center"
+                  className="bg-card border border-border rounded-lg p-6 card-hover flex flex-col"
                 >
-                  <stat.icon className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-foreground mb-1">
-                    {stat.value}
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 shrink-0">
+                    <item.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    {stat.label}
+                  <h3 className="text-lg font-semibold text-card-foreground mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed flex-1">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Process / approach */}
+      <section className="py-12 sm:py-16 md:py-20 bg-background overflow-x-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">
+              How we work with you
+            </h2>
+            <p className="text-muted-foreground text-center mb-10 md:mb-12 max-w-xl mx-auto">
+              A clear, organized process from first conversation to ongoing support.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {processSteps.map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-card border border-border rounded-lg p-6 flex gap-4"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 text-primary font-bold text-lg">
+                    {item.step}
+                  </div>
+                  <div>
+                    <h3 className="text-base font-semibold text-card-foreground mb-1.5">
+                      {item.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -104,73 +252,91 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="py-16 bg-secondary">
-        <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-foreground mb-10 text-center">
-              Our Journey
+      {/* 5. Standards / values / trust */}
+      <section className="py-12 sm:py-16 md:py-20 bg-secondary overflow-x-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">
+              Built on trust, safety & accountability
             </h2>
-            <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/30 -translate-x-1/2" />
-
-              <div className="space-y-6">
-                {timeline.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`relative flex items-center gap-6 ${
-                      index % 2 === 0 ? "md:flex-row-reverse" : ""
-                    }`}
-                  >
-                    {/* Dot */}
-                    <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full bg-primary -translate-x-1/2 z-10" />
-
-                    {/* Content */}
-                    <div
-                      className={`ml-10 md:ml-0 md:w-1/2 ${
-                        index % 2 === 0 ? "md:pl-10" : "md:pr-10 md:text-right"
-                      }`}
-                    >
-                      <div className="bg-card border border-border rounded-lg p-4 inline-block">
-                        <span className="text-primary font-bold">
-                          {item.year}
-                        </span>
-                        <p className="text-foreground text-sm mt-1">{item.event}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-foreground mb-10 text-center">
-              Our Core Values
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <p className="text-muted-foreground text-center mb-10 md:mb-12 max-w-2xl mx-auto">
+              The principles behind every project we take on.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
               {values.map((value, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <div
+                  key={index}
+                  className="bg-card border border-border rounded-lg p-6 flex gap-4"
+                >
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
                     <value.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">
+                    <h3 className="text-base font-semibold text-card-foreground mb-1.5">
                       {value.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground text-sm leading-relaxed">
                       {value.description}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
+            <div className="max-w-2xl mx-auto">
+              <h3 className="text-lg font-semibold text-foreground mb-4 text-center">
+                Our standards
+              </h3>
+              <ul className="space-y-3">
+                {standardsList.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-muted-foreground text-sm">
+                    <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Why customers choose us */}
+      <section className="py-12 sm:py-16 md:py-20 bg-background overflow-x-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">
+              Why customers choose Solario
+            </h2>
+            <p className="text-muted-foreground text-center mb-8 max-w-xl mx-auto">
+              Homeowners and businesses choose us for a professional, low-friction experience and work they can trust.
+            </p>
+            <ul className="space-y-3 max-w-md mx-auto">
+              {whyChooseUs.map((item, index) => (
+                <li key={index} className="flex items-center gap-3 text-foreground/90">
+                  <Check className="w-5 h-5 text-primary shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Closing CTA */}
+      <section className="py-12 sm:py-16 md:py-20 bg-background overflow-x-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Work with a team focused on quality, clarity, and long-term value
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Get a free, no-obligation quote. We will walk you through your options and next steps.
+            </p>
+            <Button variant="hero" size="lg" asChild>
+              <Link to="/contact" className="inline-flex items-center gap-2">
+                Get Your Free Quote
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
