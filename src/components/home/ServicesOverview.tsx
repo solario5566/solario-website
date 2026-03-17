@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { SunDim, PlugZap, BatteryCharging, ThermometerSun, Wrench, ArrowRight } from "lucide-react";
+import { SunDim, PlugZap, BatteryCharging, Wrench, ArrowRight } from "lucide-react";
 
 const services = [
   {
@@ -41,16 +41,6 @@ const services = [
       "Backup power",
       "Use solar 24/7",
       "Optimize energy usage",
-    ],
-  },
-  {
-    icon: ThermometerSun,
-    title: "Heat Pumps",
-    description: "Efficient heating and cooling for year-round comfort and savings.",
-    features: [
-      "Reduce heating costs",
-      "Energy efficient",
-      "Government rebates available",
     ],
   },
 ];
