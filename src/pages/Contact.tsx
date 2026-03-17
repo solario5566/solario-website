@@ -9,7 +9,7 @@ import { Phone, Mail, MapPin, Clock, Loader2 } from "lucide-react";
 import SEO from "@/components/SEO";
 
 const serviceAreas = [
-  "All of GTA",
+  "Greater Toronto Area",
   "Toronto",
   "North York",
   "Scarborough",
@@ -23,7 +23,6 @@ const serviceAreas = [
   "Burlington",
   "Milton",
   "Ajax",
-  "Pickering",
   "Whitby",
   "Oshawa",
   "Guelph",
@@ -31,13 +30,31 @@ const serviceAreas = [
   "Waterloo",
   "Cambridge",
   "Hamilton",
-  "Georgetown",
-  "Fergus",
-  "Elora",
-  "Rockwood",
-  "Acton",
-  "Erin",
 ];
+
+const serviceAreaRoutes: Record<string, string> = {
+  "Greater Toronto Area": "/solar-installation-greater-toronto-area",
+  Toronto: "/solar-installation-toronto",
+  "North York": "/solar-installation-north-york",
+  Scarborough: "/solar-installation-scarborough",
+  Etobicoke: "/solar-installation-etobicoke",
+  Mississauga: "/solar-installation-mississauga",
+  Brampton: "/solar-installation-brampton",
+  Vaughan: "/solar-installation-vaughan",
+  Markham: "/solar-installation-markham",
+  "Richmond Hill": "/solar-installation-richmond-hill",
+  Oakville: "/solar-installation-oakville",
+  Burlington: "/solar-installation-burlington",
+  Milton: "/solar-installation-milton",
+  Ajax: "/solar-installation-ajax",
+  Whitby: "/solar-installation-whitby",
+  Oshawa: "/solar-installation-oshawa",
+  Guelph: "/solar-installation-guelph",
+  Kitchener: "/solar-installation-kitchener",
+  Waterloo: "/solar-installation-waterloo",
+  Cambridge: "/solar-installation-cambridge",
+  Hamilton: "/solar-installation-hamilton",
+};
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -322,17 +339,45 @@ const Contact = () => {
                   Service Areas
                 </h3>
                 <p className="text-sm text-muted-foreground mb-5">
-                  Proudly serving the GTA and surrounding regions.
+                  Proudly serving the Greater Toronto Area and surrounding regions.
                 </p>
-                <div className="flex flex-wrap gap-2.5">
-                  {serviceAreas.map((area) => (
-                    <span
-                      key={area}
-                      className="px-3 py-2 bg-background border border-border rounded-lg text-sm text-muted-foreground"
+                <div className="flex flex-col items-center gap-3">
+                  {serviceAreaRoutes[serviceAreas[0]] ? (
+                    <Link
+                      to={serviceAreaRoutes[serviceAreas[0]]}
+                      className="px-4 py-2 bg-background border border-primary/30 rounded-lg text-sm text-muted-foreground cursor-pointer transition-colors duration-200 hover:bg-muted hover:border-primary/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
                     >
-                      {area}
+                      {serviceAreas[0]}
+                    </Link>
+                  ) : (
+                    <span className="px-4 py-2 bg-background border border-primary/30 rounded-lg text-sm text-muted-foreground">
+                      {serviceAreas[0]}
                     </span>
-                  ))}
+                  )}
+                  <div className="flex flex-wrap justify-center gap-2.5">
+                    {serviceAreas.slice(1).map((area) => {
+                      const route = serviceAreaRoutes[area];
+                      if (!route) {
+                        return (
+                          <span
+                            key={area}
+                            className="px-3 py-2 bg-background border border-primary/30 rounded-lg text-sm text-muted-foreground"
+                          >
+                            {area}
+                          </span>
+                        );
+                      }
+                      return (
+                        <Link
+                          key={area}
+                          to={route}
+                          className="px-3 py-2 bg-background border border-primary/30 rounded-lg text-sm text-muted-foreground cursor-pointer transition-colors duration-200 hover:bg-muted hover:border-primary/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+                        >
+                          {area}
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>

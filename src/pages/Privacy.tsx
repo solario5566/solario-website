@@ -35,7 +35,7 @@ const Privacy = () => {
       />
       <PageHero
         title="Privacy Policy"
-        subtitle="Last updated: February 2025"
+        subtitle="Last updated: March 2026"
         compact
       />
 

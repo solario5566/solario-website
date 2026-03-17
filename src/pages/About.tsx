@@ -176,7 +176,7 @@ const About = () => {
             </h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">
               <p>
-                Solario exists to make solar adoption straightforward, reliable, and worth the investment. We have completed more than 2,400 installations across Ontario and are trusted by over 1,500 homeowners and businesses. We focus on doing the job properly—quality workmanship, honest recommendations, and a smooth process from first contact to long-term support.
+                Solario exists to make solar adoption straightforward, reliable, and worth the investment. We have completed 1,500+ installations across Ontario and are trusted by over 1,500 homeowners and businesses. We focus on doing the job properly—quality workmanship, honest recommendations, and a smooth process from first contact to long-term support.
               </p>
               <p>
                 We are not here to oversell or rush installations. We are here to design and install systems that perform, to communicate clearly at every step, and to stand behind our work. Our reputation is built on customers who trust us with a major home investment and feel confident in their choice.

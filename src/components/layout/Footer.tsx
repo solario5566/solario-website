@@ -48,6 +48,11 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground mb-4 text-sm">Services</h4>
             <ul className="space-y-0.5">
               <li>
+                <Link to="/service-areas" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
+                  Service Areas
+                </Link>
+              </li>
+              <li>
                 <Link to="/services/solar-installation" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   Solar Installation
                 </Link>

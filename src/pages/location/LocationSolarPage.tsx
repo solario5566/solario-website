@@ -1,18 +1,42 @@
 import PageLayout from "@/components/layout/PageLayout";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import {
+  ShieldCheck,
+  FileCheck,
+  Home,
+  Building2,
+  SunMedium,
+  Wallet,
+  ArrowRight,
+  BatteryCharging,
+  Wrench,
+} from "lucide-react";
 
 type CityKey =
   | "toronto"
+  | "north-york"
   | "mississauga"
+  | "scarborough"
+  | "etobicoke"
   | "vaughan"
   | "markham"
   | "richmond-hill"
   | "brampton"
   | "oakville"
+  | "burlington"
+  | "milton"
+  | "ajax"
+  | "whitby"
+  | "oshawa"
   | "hamilton"
   | "waterloo"
   | "kitchener"
@@ -83,6 +107,70 @@ const LOCATION_CONFIG: Record<CityKey, LocationConfig> = {
     metroDescription:
       "Oakville's detached homes and commercial plazas are ideal candidates for premium solar panel installation with high-efficiency equipment.",
     nearby: ["mississauga", "hamilton", "toronto"],
+  },
+  "north-york": {
+    cityKey: "north-york",
+    cityName: "North York",
+    path: "/solar-installation-north-york",
+    metroDescription:
+      "North York combines established residential neighbourhoods with dense commercial corridors and high-rise buildings, creating a wide range of rooftop and site conditions for solar projects.",
+    nearby: ["toronto", "vaughan", "markham"],
+  },
+  scarborough: {
+    cityKey: "scarborough",
+    cityName: "Scarborough",
+    path: "/solar-installation-scarborough",
+    metroDescription:
+      "Scarborough's broad base of single-family homes, townhomes, and commercial properties makes it a strong candidate for residential and light commercial solar installations.",
+    nearby: ["toronto", "pickering" as never],
+  },
+  etobicoke: {
+    cityKey: "etobicoke",
+    cityName: "Etobicoke",
+    path: "/solar-installation-etobicoke",
+    metroDescription:
+      "Etobicoke offers a mix of larger residential lots and commercial buildings, providing many well-situated roofs and sites for solar and clean energy upgrades.",
+    nearby: ["toronto", "mississauga", "oakville"],
+  },
+  burlington: {
+    cityKey: "burlington",
+    cityName: "Burlington",
+    path: "/solar-installation-burlington",
+    metroDescription:
+      "Burlington's residential neighbourhoods and commercial corridors are well suited to solar, with many properties focused on long-term energy savings and sustainability.",
+    nearby: ["oakville", "hamilton", "milton"],
+  },
+  milton: {
+    cityKey: "milton",
+    cityName: "Milton",
+    path: "/solar-installation-milton",
+    metroDescription:
+      "Milton is a fast-growing community with many newer homes and businesses, making it an excellent place for future-focused solar and clean energy upgrades.",
+    nearby: ["burlington", "oakville", "mississauga"],
+  },
+  ajax: {
+    cityKey: "ajax",
+    cityName: "Ajax",
+    path: "/solar-installation-ajax",
+    metroDescription:
+      "Ajax features primarily suburban housing and local businesses, where solar can help homeowners and property owners manage long-term electricity costs.",
+    nearby: ["whitby", "oshawa", "toronto"],
+  },
+  whitby: {
+    cityKey: "whitby",
+    cityName: "Whitby",
+    path: "/solar-installation-whitby",
+    metroDescription:
+      "Whitby's family neighbourhoods and local business areas provide strong opportunities for solar, especially for customers focused on stability and long-term value.",
+    nearby: ["ajax", "oshawa", "toronto"],
+  },
+  oshawa: {
+    cityKey: "oshawa",
+    cityName: "Oshawa",
+    path: "/solar-installation-oshawa",
+    metroDescription:
+      "Oshawa's mix of residential properties, commercial space, and light industry creates a wide range of use cases for solar and related clean energy upgrades.",
+    nearby: ["whitby", "ajax", "toronto"],
   },
   hamilton: {
     cityKey: "hamilton",
@@ -178,6 +266,13 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
   const title = `Solar Installation ${cityName}`;
   const description = `Professional solar panel installation in ${cityName}, Ontario. Design, permits, installation, and 25-year warranty. Free quote from Solario.`;
 
+  const cityIsCore =
+    cityKey === "guelph" ||
+    cityKey === "kitchener" ||
+    cityKey === "waterloo" ||
+    cityKey === "cambridge" ||
+    cityKey === "hamilton";
+
   return (
     <PageLayout>
       <SEO
@@ -192,247 +287,492 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
 
       <div className="pt-[72px]">
         <section className="py-16 md:py-20 bg-background">
-          <div className="container mx-auto">
-            <div className="max-w-3xl mx-auto">
-              <header className="mb-10">
-                <p className="text-primary font-semibold text-sm mb-2">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto space-y-12">
+              {/* Hero */}
+              <header className="animate-fade-in">
+                <p className="text-primary font-semibold text-xs sm:text-sm mb-2">
                   Solar Installers in {cityName}, Ontario
                 </p>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                  Solar Panel Installation in {cityName}
-                </h1>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {cityKey === "guelph" ? (
-                    <>Solario is based in Guelph and serves the city and the wider region. With over 15 years of experience and more than 2,400 systems installed across Ontario, we design and install premium solar panel systems for homeowners and commercial properties—ESA-licensed installation, 25-year panel warranties, and support from quote to completion.</>
-                  ) : (cityKey === "kitchener" || cityKey === "waterloo" || cityKey === "cambridge" || cityKey === "hamilton") ? (
-                    <>Solario is based in Guelph and serves {cityName} and the surrounding region with the same ESA-licensed installation, 25-year panel warranties, and support we offer across Ontario. With over 15 years of experience and more than 2,400 systems installed, we design and install premium solar for homeowners and commercial properties—no subcontractors, clear communication, and a single point of contact from quote to completion.</>
-                  ) : (
-                    <>Solario Energy Inc. designs and installs premium solar panel systems for {cityName} homeowners and commercial properties. With over 15 years of experience and more than 2,400 systems installed across Ontario, we are a trusted solar company focused on long-term performance, safety, and return on investment.</>
-                  )}
-                </p>
+                <div className="grid gap-8 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] items-start">
+                  <div>
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
+                      Solar Panel Installation in {cityName}
+                    </h1>
+                    <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                      {cityKey === "guelph" ? (
+                        <>
+                          Solario is based in Guelph and serves the city and the wider region. With 15+
+                          years in business and 1,500+ installations across Ontario, we design
+                          and install premium solar panel systems for homeowners and commercial properties.
+                        </>
+                      ) : cityIsCore ? (
+                        <>
+                          Solario is based in Guelph and serves {cityName} and the surrounding region with the
+                          same ESA-licensed installation, 25-year panel warranties, and support we offer across
+                          Ontario.
+                        </>
+                      ) : (
+                        <>
+                          Solario Energy Inc. designs and installs premium solar panel systems for {cityName}{" "}
+                          homeowners and commercial properties, focused on long-term performance, safety, and
+                          return on investment.
+                        </>
+                      )}
+                    </p>
+                  </div>
+                  <div className="bg-card border border-border rounded-xl p-4 sm:p-5 shadow-card animate-slide-up">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3">
+                      Why homeowners choose Solario
+                    </p>
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-start gap-3">
+                        <ShieldCheck className="w-4 h-4 text-primary mt-0.5" />
+                        <p className="text-muted-foreground">
+                          ESA-licensed installation and projects designed for Ontario&apos;s climate.
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <FileCheck className="w-4 h-4 text-primary mt-0.5" />
+                        <p className="text-muted-foreground">
+                          25-year panel performance warranties and transparent proposals.
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Home className="w-4 h-4 text-primary mt-0.5" />
+                        <p className="text-muted-foreground">
+                          Residential and commercial systems tailored to your roof and usage.
+                        </p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <Wallet className="w-4 h-4 text-primary mt-0.5" />
+                        <p className="text-muted-foreground">
+                          Guidance on incentives and{" "}
+                          <Link to="/finance" className="text-primary hover:underline">
+                            financing options
+                          </Link>{" "}
+                          to make solar more accessible.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </header>
 
               {/* About Solar in City */}
-              <section className="space-y-4 mb-10">
-                <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-                  About Solar in {cityName}
-                </h2>
-                {(cityKey === "guelph" || cityKey === "kitchener" || cityKey === "waterloo" || cityKey === "cambridge" || cityKey === "hamilton") && (
-                  <p className="text-muted-foreground leading-relaxed">
-                    {cityKey === "guelph" && "As a Guelph-based company, we know the local roof types, utility setup, and permitting landscape—and we serve the city and the wider region with the same standards."}
-                    {cityKey === "kitchener" && "Kitchener's mix of established neighbourhoods and growing commercial and residential development makes it well suited for rooftop solar; we serve the area from our Guelph base with the same design and installation standards."}
-                    {cityKey === "waterloo" && "Waterloo's strong focus on innovation and sustainability aligns well with solar adoption; we serve Waterloo and the region from our Guelph office with the same ESA-licensed installation and support."}
-                    {cityKey === "cambridge" && "Cambridge's mix of residential and light industrial properties offers strong opportunities for solar; we serve the area from our Guelph base with the same turnkey process and warranties."}
-                    {cityKey === "hamilton" && "Hamilton's diverse housing stock and commercial facilities are a good fit for solar; we serve Hamilton and the region from our Guelph base with the same design, permitting, and installation standards."}
-                  </p>
-                )}
-                <p className="text-muted-foreground leading-relaxed">
-                  {metroDescription} Solar panel installation in {cityName} gives you predictable, long-term savings
-                  by converting the sun&apos;s energy into clean electricity for your home or business. With Ontario&apos;s
-                  net metering program, excess power generated during sunny hours is sent back to the grid in exchange
-                  for bill credits you can use at night or during the winter.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Our team analyzes your roof or site conditions, shading, and electricity usage to engineer a
-                  solar system that maximizes production throughout the year. Every design is stamped by qualified
-                  engineers and installed by ESA-licensed electricians to meet or exceed Ontario electrical code.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Whether you are a residential homeowner looking to offset rising utility rates or a commercial
-                  property manager seeking lower operating costs, Solario provides turnkey solar solutions in{" "}
-                  {cityName} tailored to your energy goals, budget, and timeline.
-                </p>
-              </section>
-
-              {/* Residential Solar Installation */}
-              <section className="space-y-4 mb-10">
-                <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-                  Residential Solar Installation in {cityName}
-                </h2>
-                <h3 className="text-xl font-semibold text-foreground">
-                  Smart solar solutions for {cityName} homeowners
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Most {cityName} homeowners install solar panels to reduce their monthly electricity bills and
-                  protect themselves from future rate increases. A properly designed rooftop solar system can offset
-                  60–100% of your annual electricity consumption, depending on your roof size and usage patterns.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Solario specifies high-efficiency Tier-1 panels backed by a{" "}
-                  <strong>25-year performance warranty</strong>, paired with premium inverters and racking
-                  designed for Ontario&apos;s climate. Our crews take care to preserve your roof integrity and follow
-                  manufacturer installation guidelines so your warranty remains fully valid.
-                </p>
-                <h3 className="text-lg font-semibold text-foreground">
-                  A complete, hassle-free solar experience
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  From your first consultation through to system monitoring, Solario handles every step of your
-                  residential solar project in {cityName}. We take care of:
-                </p>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li>On-site assessment, roof evaluation, and shade analysis</li>
-                  <li>Custom system engineering and layout to match your goals</li>
-                  <li>All permits, ESA inspections, and utility interconnection paperwork</li>
-                  <li>Professional installation by ESA Licensed electricians and experienced solar crews</li>
-                  <li>System activation, monitoring setup, and homeowner training</li>
-                </ul>
-              </section>
-
-              {/* Commercial Solar Systems */}
-              <section className="space-y-4 mb-10">
-                <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-                  Commercial Solar Systems in {cityName}
-                </h2>
-                <h3 className="text-xl font-semibold text-foreground">
-                  Lower operating costs for {cityName} businesses
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  For commercial buildings, warehouses, plazas, and institutional facilities in {cityName}, solar
-                  offers a predictable hedge against rising utility costs. Commercial solar installation on flat or
-                  pitched roofs can dramatically reduce your electrical demand charges while enhancing your ESG
-                  and sustainability profile.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Solario&apos;s engineering team designs commercial solar systems that integrate with your existing
-                  electrical infrastructure, rooftop equipment, and structural capacity. We model your expected
-                  energy production and cash flow over 25+ years so you can clearly evaluate the business case.
-                </p>
-                <h3 className="text-lg font-semibold text-foreground">
-                  Certified, safety-first commercial solar installers
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  As an <strong>ESA Licensed</strong>, <strong>TSSA Registered</strong>,{" "}
-                  <strong>Tesla Certified</strong>, and <strong>NABCEP Certified</strong> solar company, Solario
-                  follows rigorous safety, design, and installation standards on every project. Our commercial
-                  crews are experienced working around live operations, coordinating with facility managers, and
-                  minimizing disruption during installation.
-                </p>
-              </section>
-
-              {/* Solar Incentives and Financing */}
-              <section className="space-y-4 mb-10">
-                <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-                  Solar Incentives and Financing in Ontario
-                </h2>
-                <h3 className="text-xl font-semibold text-foreground">
-                  {(cityKey === "guelph" || cityKey === "kitchener" || cityKey === "waterloo" || cityKey === "cambridge" || cityKey === "hamilton")
-                    ? `Making solar affordable in ${cityName} and the region`
-                    : "Make solar more affordable with Financeit"}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {(cityKey === "guelph" || cityKey === "kitchener" || cityKey === "waterloo" || cityKey === "cambridge" || cityKey === "hamilton") && (
-                    <>In {cityName}, as across Ontario, net metering and financing options make solar accessible without large upfront cost. </>
+              <section className="space-y-6 mb-4 animate-fade-in">
+                <div className="space-y-3 max-w-3xl">
+                  <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+                    About Solar in {cityName}
+                  </h2>
+                  {cityIsCore && (
+                    <p className="text-muted-foreground leading-relaxed">
+                      {cityKey === "guelph" &&
+                        "As a Guelph-based company, we know the local roof types, utility setup, and permitting landscape—and we serve the city and the wider region with the same standards."}
+                      {cityKey === "kitchener" &&
+                        "Kitchener's mix of established neighbourhoods and growing development makes it well suited for rooftop solar; we serve the area from our Guelph base with consistent design and installation standards."}
+                      {cityKey === "waterloo" &&
+                        "Waterloo's focus on innovation and sustainability aligns naturally with solar adoption; we support homes and businesses from our Guelph office with ESA-licensed installation and ongoing care."}
+                      {cityKey === "cambridge" &&
+                        "Cambridge's blend of residential streets and light industrial space offers strong opportunities for solar; we bring a turnkey process and long-term support to every project."}
+                      {cityKey === "hamilton" &&
+                        "Hamilton's diverse housing stock and commercial facilities are a strong fit for solar; we coordinate design, permitting, and installation from our Guelph base."}
+                    </p>
                   )}
-                  Even without large provincial rebates, solar panel installation in {cityName} can be surprisingly
-                  affordable. Through Ontario&apos;s net metering program, your solar system earns bill credits for
-                  excess production, and our financing partner <strong>Financeit</strong> helps spread the remaining
-                  cost over predictable monthly payments.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Many customers choose $0-down or low-down-payment solar loans where the monthly payment is
-                  similar to, or less than, their pre-solar electricity bill. Learn more about our{" "}
-                  <Link to="/finance" className="text-primary hover:underline">financing options</Link> and how we
-                  can help you find a plan that fits your budget.
-                </p>
-              </section>
-
-              {/* Why Choose Solario */}
-              <section className="space-y-4 mb-10">
-                <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-                  Why Choose Solario for Solar in {cityName}
-                </h2>
-                {(cityKey === "kitchener" || cityKey === "waterloo" || cityKey === "cambridge" || cityKey === "hamilton") && (
                   <p className="text-muted-foreground leading-relaxed">
-                    Solario is based in Guelph and serves {cityName} and the surrounding region. We bring the same ESA-licensed installation, 25-year warranties, and support to every project across Ontario.
+                    {metroDescription} Solar panel installation in {cityName} gives you predictable, long-term
+                    savings by converting the sun&apos;s energy into clean electricity for your home or business.
+                    With Ontario&apos;s net metering program, excess power generated during sunny hours can earn
+                    bill credits you use at night or in winter.
                   </p>
-                )}
-                <h3 className="text-xl font-semibold text-foreground">
-                  15+ years of Ontario solar experience
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Solario Energy Inc. has been focused exclusively on solar and clean energy solutions in Ontario
-                  for more than 15 years. Our portfolio includes over 2,400 residential and commercial installations
-                  across the Greater Toronto Area and beyond, giving us deep experience with local utilities,
-                  permitting authorities, and building conditions.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  Every system we install is backed by a <strong>25-year panel performance warranty</strong> and
-                  supported by our in-house service team. When you choose Solario, you are partnering with a local,
-                  fully certified solar installer that will be there to support your system for decades. Learn more about our{" "}
-                  <Link to="/certifications" className="text-primary hover:underline">licenses and certifications</Link>
-                  , or <Link to="/contact" className="text-primary hover:underline">contact us</Link> for a free quote.
-                </p>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li>15+ years of hands-on solar installation experience in Ontario</li>
-                  <li>ESA Licensed, TSSA Registered, Tesla Certified, and NABCEP Certified</li>
-                  <li>Premium Tier-1 equipment with 25-year warranties</li>
-                  <li>In-house engineering, installation, and support teams</li>
-                  <li>Transparent proposals with long-term performance modelling</li>
-                </ul>
-              </section>
+                </div>
 
-              {/* CTA Section */}
-              <section className="bg-navy-dark rounded-xl p-6 md:p-8 mb-10 shadow-card">
-                <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-3">
-                  Get a Free Solar Consultation in {cityName}
-                </h2>
-                <p className="text-muted-foreground mb-5 leading-relaxed">
-                  Ready to explore solar panel installation in {cityName}? Our team will review your property,
-                  design a custom system, and show you exactly how much you can save over the next 25 years.
-                </p>
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                  <Button variant="hero" size="lg" asChild>
-                    <Link to="/contact">Book a Solar Consultation</Link>
-                  </Button>
-                  <div className="flex flex-col gap-1 text-sm">
-                    <span className="text-muted-foreground">Prefer to speak with someone now?</span>
-                    <a
-                      href="tel:+13823420754"
-                      className="text-primary hover:text-primary-hover font-semibold"
-                    >
-                      Call +1 (382) 342-0754
-                    </a>
+                <div className="grid gap-4 md:gap-6 md:grid-cols-3">
+                  <div className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card animate-slide-up">
+                    <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                      Why {cityName} is a good fit
+                    </h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      A mix of detached homes, small businesses, and open roof space makes solar a strong option
+                      for many properties in {cityName}. We design around your roof, shading, and energy use
+                      instead of taking a one-size-fits-all approach.
+                    </p>
+                  </div>
+                  <div className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card animate-slide-up">
+                    <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                      Residential considerations
+                    </h3>
+                    <ul className="text-xs sm:text-sm text-muted-foreground space-y-1.5">
+                      <li>Roof condition, orientation, and shading are reviewed before we recommend a system.</li>
+                      <li>
+                        We size systems to your usage and utility rates to balance upfront cost and long-term
+                        savings.
+                      </li>
+                      <li>
+                        All work is completed to Ontario electrical code by ESA-licensed electricians and
+                        experienced crews.
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card animate-slide-up">
+                    <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                      Commercial considerations
+                    </h3>
+                    <ul className="text-xs sm:text-sm text-muted-foreground space-y-1.5">
+                      <li>We evaluate roof structure, available space, and existing rooftop equipment.</li>
+                      <li>
+                        Systems are designed around demand charges and operating hours to maximize value over
+                        25+ years.
+                      </li>
+                      <li>
+                        Our team coordinates with facility managers to minimize disruption during installation.
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </section>
 
-              {/* Internal links to services and nearby cities */}
-              <section className="mb-10 space-y-4">
-                <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
-                  Explore Solar Services Across Ontario
-                </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  In addition to solar panel installation in {cityName}, we offer{" "}
-                  <Link to="/services/solar-repair" className="text-primary hover:underline">solar repair</Link>,{" "}
-                  <Link to="/services/ev-charging" className="text-primary hover:underline">EV charging</Link>,{" "}
-                  <Link to="/services/battery-storage" className="text-primary hover:underline">battery storage</Link>, and{" "}
-                  <Link to="/services/heat-pumps" className="text-primary hover:underline">heat pumps</Link> across Ontario. <Link to="/finance" className="text-primary hover:underline">Financing</Link> is available for qualified projects. Learn more about our{" "}
-                  <Link to="/services/solar-installation" className="text-primary hover:underline">solar installation services</Link> or explore nearby areas below.
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {nearby.map((key) => {
-                    const nearbyConfig = LOCATION_CONFIG[key];
-                    const anchorCityName = nearbyConfig.cityName;
-                    const anchorText =
-                      key === "toronto"
-                        ? `solar installers in ${anchorCityName}`
-                        : `solar company ${anchorCityName}`;
-                    return (
-                      <Link
-                        key={key}
-                        to={nearbyConfig.path}
-                        className="text-primary hover:text-primary-hover text-sm font-semibold"
-                      >
-                        {anchorText}
+              {/* Residential & Commercial */}
+              <section className="space-y-10 animate-fade-in">
+                <div className="grid gap-8 md:grid-cols-2 items-start">
+                  <div className="space-y-3">
+                    <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+                      Residential Solar Installation in {cityName}
+                    </h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Most {cityName} homeowners install solar to reduce monthly electricity bills and gain
+                      more control over future rate increases. A properly designed rooftop system can offset
+                      a significant portion of your annual usage, depending on roof size and consumption.
+                    </p>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex items-start gap-2">
+                        <SunMedium className="w-4 h-4 text-primary mt-0.5" />
+                        <span>
+                          High-efficiency Tier-1 panels with a{" "}
+                          <strong>25-year performance warranty</strong>, paired with premium inverters and
+                          racking for Ontario&apos;s climate.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <Home className="w-4 h-4 text-primary mt-0.5" />
+                        <span>
+                          Careful roof integration that respects shingles, flashing, and manufacturer
+                          guidelines so your warranty remains valid.
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <FileCheck className="w-4 h-4 text-primary mt-0.5" />
+                        <span>
+                          A complete experience—from on-site assessment and design through permits, ESA
+                          inspections, installation, and monitoring setup.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="bg-card border border-border rounded-xl p-4 sm:p-5 md:p-6 shadow-card animate-slide-up">
+                    <h3 className="text-base font-semibold text-foreground mb-2">
+                      What to expect as a homeowner
+                    </h3>
+                    <ul className="space-y-1.5 text-sm text-muted-foreground">
+                      <li>Property and bill review to understand your goals and usage.</li>
+                      <li>Custom layout and production estimate tailored to your roof.</li>
+                      <li>Clear explanation of net metering and expected bill impact.</li>
+                      <li>Organized installation day with a respectful, in-house crew.</li>
+                      <li>Monitoring access and support if questions come up later.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="grid gap-8 md:grid-cols-2 items-start">
+                  <div className="bg-card border border-border rounded-xl p-4 sm:p-5 md:p-6 shadow-card animate-slide-up order-2 md:order-1">
+                    <h3 className="text-base font-semibold text-foreground mb-2">
+                      Commercial and institutional solar in {cityName}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                      For commercial buildings, warehouses, plazas, and institutional facilities in {cityName},
+                      solar offers a predictable hedge against rising utility costs while supporting ESG and
+                      sustainability goals.
+                    </p>
+                    <ul className="space-y-1.5 text-sm text-muted-foreground">
+                      <li>
+                        Design that integrates with existing rooftop equipment and structural capacity.
+                      </li>
+                      <li>
+                        Detailed production and cash-flow modelling over 25+ years to evaluate payback.
+                      </li>
+                      <li>
+                        Experienced crews used to working around live operations and coordinating access.
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="space-y-3 order-1 md:order-2">
+                    <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+                      Commercial Solar Systems in {cityName}
+                    </h2>
+                    <p className="text-muted-foreground leading-relaxed">
+                      We design commercial systems around your building, utility tariff, and operating profile.
+                      The goal is long-term, reliable production—not short-term shortcuts.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Solar Incentives and Financing */}
+              <section className="space-y-6 animate-fade-in">
+                <div className="space-y-3 max-w-3xl">
+                  <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+                    Solar Incentives and Financing in Ontario
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Even without large provincial rebates, solar panel installation in {cityName} can be
+                    surprisingly accessible. Net metering allows you to earn bill credits for excess production,
+                    and financing can spread the remaining cost over predictable monthly payments.
+                  </p>
+                </div>
+                <div className="grid gap-4 md:grid-cols-3">
+                  <div className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card animate-slide-up">
+                    <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                      Net metering credits
+                    </h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      Extra energy generated during sunny hours is sent back to the grid for bill credits you can
+                      use at night or in winter, improving long-term savings.
+                    </p>
+                  </div>
+                  <div className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card animate-slide-up">
+                    <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                      Financing options
+                    </h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      Many customers choose low-monthly-payment plans so they can move forward without paying
+                      the full cost upfront.
+                    </p>
+                  </div>
+                  <div className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card animate-slide-up">
+                    <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                      Guided, not pressured
+                    </h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      We explain incentives and payment options clearly and point you to our{" "}
+                      <Link to="/finance" className="text-primary hover:underline">
+                        financing page
+                      </Link>{" "}
+                      so you can decide what fits best.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Why Choose Solario */}
+              <section className="space-y-6 animate-fade-in">
+                <div className="space-y-3 max-w-3xl">
+                  <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+                    Why Choose Solario for Solar in {cityName}
+                  </h2>
+                  {cityIsCore && (
+                    <p className="text-muted-foreground leading-relaxed">
+                      Solario is based in Guelph and serves {cityName} and the surrounding region. We bring the
+                      same installation standards, warranties, and support to every project across Ontario.
+                    </p>
+                  )}
+                  <p className="text-muted-foreground leading-relaxed">
+                    Our focus is on quality workmanship, clear communication, and long-term performance—not
+                    quick wins. When you choose Solario, you partner with a team that plans to support your
+                    system for decades.
+                  </p>
+                </div>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card animate-slide-up">
+                    <div className="flex items-center gap-3 mb-2">
+                      <ShieldCheck className="w-5 h-5 text-primary" />
+                      <h3 className="text-sm font-semibold text-foreground">
+                        Certified, safety-first installation
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      ESA-licensed, TSSA-registered, Tesla Certified, and NABCEP Certified. Systems are designed
+                      and installed to code and manufacturer specifications.
+                    </p>
+                  </div>
+                  <div className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card animate-slide-up">
+                    <div className="flex items-center gap-3 mb-2">
+                      <FileCheck className="w-5 h-5 text-primary" />
+                      <h3 className="text-sm font-semibold text-foreground">
+                        Transparent proposals & modelling
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      We provide clear layouts, production estimates, and long-term performance modelling so you
+                      can make informed decisions.
+                    </p>
+                  </div>
+                  <div className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card animate-slide-up">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Home className="w-5 h-5 text-primary" />
+                      <h3 className="text-sm font-semibold text-foreground">
+                        In-house installation & support
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      Our in-house teams handle installation and support. You have a single point of contact from
+                      quote through activation and beyond.
+                    </p>
+                  </div>
+                  <div className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card animate-slide-up">
+                    <div className="flex items-center gap-3 mb-2">
+                      <SunMedium className="w-5 h-5 text-primary" />
+                      <h3 className="text-sm font-semibold text-foreground">
+                        Built for long-term performance
+                      </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                      We specify premium Tier-1 equipment with 25-year warranties and design for reliability, not
+                      just nameplate output.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Bottom CTA */}
+              <section className="bg-navy-dark rounded-xl p-6 md:p-8 shadow-card animate-fade-in">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                  <div className="space-y-2 max-w-xl">
+                    <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+                      Ready to explore solar in {cityName}?
+                    </h2>
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                      Share a few details about your property and goals. We&apos;ll design a tailored system,
+                      walk you through expected savings, and answer your questions—no pressure, no obligation.
+                    </p>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 text-sm">
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <ShieldCheck className="w-4 h-4 text-primary" />
+                        <span>ESA-licensed installation</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <FileCheck className="w-4 h-4 text-primary" />
+                        <span>25-year panel warranties</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-3 items-start">
+                    <Button variant="hero" size="lg" asChild>
+                      <Link to="/contact" className="inline-flex items-center gap-2">
+                        Request Your Free Quote
+                        <ArrowRight className="w-4 h-4" />
                       </Link>
-                    );
-                  })}
+                    </Button>
+                    <div className="flex flex-col gap-1 text-sm">
+                      <span className="text-muted-foreground">
+                        Prefer to speak with someone now?
+                      </span>
+                      <a
+                        href="tel:+13823420754"
+                        className="text-primary hover:text-primary-hover font-semibold"
+                      >
+                        Call +1 (382) 342-0754
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Explore services & nearby cities */}
+              <section className="space-y-6 mb-4 animate-fade-in">
+                <div className="space-y-3">
+                  <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
+                    Explore Solario services
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed max-w-3xl">
+                    In addition to solar panel installation in {cityName}, we offer a full suite of clean energy
+                    services across Ontario.
+                  </p>
+                </div>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <Link
+                    to="/services/solar-installation"
+                    className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 flex items-start gap-3"
+                  >
+                    <SunMedium className="w-5 h-5 text-primary mt-0.5" />
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">
+                        Solar installation
+                      </h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        Premium rooftop and ground-mount systems for homes and businesses.
+                      </p>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/services/solar-repair"
+                    className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 flex items-start gap-3"
+                  >
+                    <Wrench className="w-5 h-5 text-primary mt-0.5" />
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">
+                        Solar repair & upgrades
+                      </h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        Troubleshooting, repairs, and performance improvements for existing systems.
+                      </p>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/services/ev-charging"
+                    className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 flex items-start gap-3"
+                  >
+                    <Building2 className="w-5 h-5 text-primary mt-0.5" />
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">EV charging</h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        Home and commercial Level 2 charging, integrated with your electrical service.
+                      </p>
+                    </div>
+                  </Link>
+                  <Link
+                    to="/services/battery-storage"
+                    className="bg-card border border-border rounded-lg p-4 md:p-5 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 flex items-start gap-3"
+                  >
+                    <BatteryCharging className="w-5 h-5 text-primary mt-0.5" />
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground mb-1">
+                        Battery storage
+                      </h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        Backup power, time-of-use optimization, and better use of your solar production.
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="space-y-3 mt-4">
+                  <h3 className="text-lg font-semibold text-foreground">
+                    Nearby areas we also serve
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {nearby.map((key) => {
+                      const nearbyConfig = LOCATION_CONFIG[key];
+                      const anchorCityName = nearbyConfig.cityName;
+                      const anchorText =
+                        key === "toronto"
+                          ? `Solar installers in ${anchorCityName}`
+                          : `Solar company ${anchorCityName}`;
+                      return (
+                        <Link
+                          key={key}
+                          to={nearbyConfig.path}
+                          className="text-primary hover:text-primary-hover text-sm font-semibold"
+                        >
+                          {anchorText}
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
               </section>
 
               {/* FAQ Section */}
-              <section className="mb-16">
+              <section className="mb-16 animate-fade-in">
                 <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
                   Frequently Asked Questions About Solar in {cityName}
                 </h2>

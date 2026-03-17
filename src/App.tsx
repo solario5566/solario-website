@@ -21,6 +21,8 @@ import BatteryStorage from "./pages/services/BatteryStorage";
 import HeatPumps from "./pages/services/HeatPumps";
 import SolarRepair from "./pages/services/SolarRepair";
 import LocationSolarPage from "./pages/location/LocationSolarPage";
+import GreaterTorontoArea from "./pages/GreaterTorontoArea";
+import ServiceAreas from "./pages/ServiceAreas";
 
 const queryClient = new QueryClient();
 
@@ -38,13 +40,23 @@ const App = () => (
           <Route path="/services/battery-storage" element={<BatteryStorage />} />
           <Route path="/services/heat-pumps" element={<HeatPumps />} />
           <Route path="/services/solar-repair" element={<SolarRepair />} />
+          <Route path="/service-areas" element={<ServiceAreas />} />
+          <Route path="/solar-installation-greater-toronto-area" element={<GreaterTorontoArea />} />
           <Route path="/solar-installation-toronto" element={<LocationSolarPage cityKey="toronto" />} />
+          <Route path="/solar-installation-north-york" element={<LocationSolarPage cityKey="north-york" />} />
+          <Route path="/solar-installation-scarborough" element={<LocationSolarPage cityKey="scarborough" />} />
+          <Route path="/solar-installation-etobicoke" element={<LocationSolarPage cityKey="etobicoke" />} />
           <Route path="/solar-installation-mississauga" element={<LocationSolarPage cityKey="mississauga" />} />
           <Route path="/solar-installation-vaughan" element={<LocationSolarPage cityKey="vaughan" />} />
           <Route path="/solar-installation-markham" element={<LocationSolarPage cityKey="markham" />} />
           <Route path="/solar-installation-richmond-hill" element={<LocationSolarPage cityKey="richmond-hill" />} />
           <Route path="/solar-installation-brampton" element={<LocationSolarPage cityKey="brampton" />} />
           <Route path="/solar-installation-oakville" element={<LocationSolarPage cityKey="oakville" />} />
+          <Route path="/solar-installation-burlington" element={<LocationSolarPage cityKey="burlington" />} />
+          <Route path="/solar-installation-milton" element={<LocationSolarPage cityKey="milton" />} />
+          <Route path="/solar-installation-ajax" element={<LocationSolarPage cityKey="ajax" />} />
+          <Route path="/solar-installation-whitby" element={<LocationSolarPage cityKey="whitby" />} />
+          <Route path="/solar-installation-oshawa" element={<LocationSolarPage cityKey="oshawa" />} />
           <Route path="/solar-installation-hamilton" element={<LocationSolarPage cityKey="hamilton" />} />
           <Route path="/solar-installation-waterloo" element={<LocationSolarPage cityKey="waterloo" />} />
           <Route path="/solar-installation-kitchener" element={<LocationSolarPage cityKey="kitchener" />} />
