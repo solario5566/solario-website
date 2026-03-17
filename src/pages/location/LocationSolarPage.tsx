@@ -15,7 +15,9 @@ type CityKey =
   | "oakville"
   | "hamilton"
   | "waterloo"
-  | "kitchener";
+  | "kitchener"
+  | "guelph"
+  | "cambridge";
 
 interface LocationConfig {
   cityKey: CityKey;
@@ -104,7 +106,23 @@ const LOCATION_CONFIG: Record<CityKey, LocationConfig> = {
     path: "/solar-installation-kitchener",
     metroDescription:
       "Kitchener homeowners and business owners are installing solar to stabilize long-term energy costs and support the region's sustainability goals.",
-    nearby: ["waterloo", "hamilton"],
+    nearby: ["waterloo", "guelph", "cambridge"],
+  },
+  guelph: {
+    cityKey: "guelph",
+    cityName: "Guelph",
+    path: "/solar-installation-guelph",
+    metroDescription:
+      "Guelph's mix of residential neighbourhoods, farms, and commercial properties makes it well suited for rooftop and ground-mount solar. Homeowners and businesses in Guelph are adopting solar to reduce electricity costs and support local sustainability goals.",
+    nearby: ["kitchener", "waterloo", "cambridge", "brampton"],
+  },
+  cambridge: {
+    cityKey: "cambridge",
+    cityName: "Cambridge",
+    path: "/solar-installation-cambridge",
+    metroDescription:
+      "Cambridge residents and businesses are turning to solar to lock in energy costs and reduce reliance on the grid. The region's mix of housing and light industry offers strong opportunities for both residential and commercial solar.",
+    nearby: ["kitchener", "waterloo", "guelph", "hamilton"],
   },
 };
 
@@ -157,8 +175,8 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
     })),
   };
 
-  const title = `Solar Panel Installation ${cityName} Ontario | Solario Energy`;
-  const description = `Solario Energy provides professional solar panel installation in ${cityName}, Ontario for residential homes and commercial buildings. 15+ years of experience, 25-year panel warranty, ESA licensed, Tesla Certified, and financing through Financeit.`;
+  const title = `Solar Installation ${cityName}`;
+  const description = `Professional solar panel installation in ${cityName}, Ontario. Design, permits, installation, and 25-year warranty. Free quote from Solario.`;
 
   return (
     <PageLayout>
@@ -166,15 +184,7 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
         title={title}
         description={description}
         path={path}
-        type="article"
-        keywords={[
-          "solar panel installation ontario",
-          `solar panel installation ${cityName.toLowerCase()}`,
-          `solar installers ${cityName.toLowerCase()}`,
-          `solar company ${cityName.toLowerCase()}`,
-          "commercial solar installation",
-          "residential solar installation",
-        ]}
+        type="website"
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
@@ -192,10 +202,13 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
                   Solar Panel Installation in {cityName}
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Solario Energy Inc. designs and installs premium solar panel systems for {cityName} homeowners
-                  and commercial properties. With over 15 years of experience and more than 2,400 systems installed
-                  across Ontario, we are a trusted solar company focused on long-term performance, safety, and
-                  return on investment.
+                  {cityKey === "guelph" ? (
+                    <>Solario is based in Guelph and serves the city and the wider region. With over 15 years of experience and more than 2,400 systems installed across Ontario, we design and install premium solar panel systems for homeowners and commercial properties—ESA-licensed installation, 25-year panel warranties, and support from quote to completion.</>
+                  ) : (cityKey === "kitchener" || cityKey === "waterloo" || cityKey === "cambridge" || cityKey === "hamilton") ? (
+                    <>Solario is based in Guelph and serves {cityName} and the surrounding region with the same ESA-licensed installation, 25-year panel warranties, and support we offer across Ontario. With over 15 years of experience and more than 2,400 systems installed, we design and install premium solar for homeowners and commercial properties—no subcontractors, clear communication, and a single point of contact from quote to completion.</>
+                  ) : (
+                    <>Solario Energy Inc. designs and installs premium solar panel systems for {cityName} homeowners and commercial properties. With over 15 years of experience and more than 2,400 systems installed across Ontario, we are a trusted solar company focused on long-term performance, safety, and return on investment.</>
+                  )}
                 </p>
               </header>
 
@@ -204,6 +217,15 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
                 <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
                   About Solar in {cityName}
                 </h2>
+                {(cityKey === "guelph" || cityKey === "kitchener" || cityKey === "waterloo" || cityKey === "cambridge" || cityKey === "hamilton") && (
+                  <p className="text-muted-foreground leading-relaxed">
+                    {cityKey === "guelph" && "As a Guelph-based company, we know the local roof types, utility setup, and permitting landscape—and we serve the city and the wider region with the same standards."}
+                    {cityKey === "kitchener" && "Kitchener's mix of established neighbourhoods and growing commercial and residential development makes it well suited for rooftop solar; we serve the area from our Guelph base with the same design and installation standards."}
+                    {cityKey === "waterloo" && "Waterloo's strong focus on innovation and sustainability aligns well with solar adoption; we serve Waterloo and the region from our Guelph office with the same ESA-licensed installation and support."}
+                    {cityKey === "cambridge" && "Cambridge's mix of residential and light industrial properties offers strong opportunities for solar; we serve the area from our Guelph base with the same turnkey process and warranties."}
+                    {cityKey === "hamilton" && "Hamilton's diverse housing stock and commercial facilities are a good fit for solar; we serve Hamilton and the region from our Guelph base with the same design, permitting, and installation standards."}
+                  </p>
+                )}
                 <p className="text-muted-foreground leading-relaxed">
                   {metroDescription} Solar panel installation in {cityName} gives you predictable, long-term savings
                   by converting the sun&apos;s energy into clean electricity for your home or business. With Ontario&apos;s
@@ -294,9 +316,14 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
                   Solar Incentives and Financing in Ontario
                 </h2>
                 <h3 className="text-xl font-semibold text-foreground">
-                  Make solar more affordable with Financeit
+                  {(cityKey === "guelph" || cityKey === "kitchener" || cityKey === "waterloo" || cityKey === "cambridge" || cityKey === "hamilton")
+                    ? `Making solar affordable in ${cityName} and the region`
+                    : "Make solar more affordable with Financeit"}
                 </h3>
                 <p className="text-muted-foreground leading-relaxed">
+                  {(cityKey === "guelph" || cityKey === "kitchener" || cityKey === "waterloo" || cityKey === "cambridge" || cityKey === "hamilton") && (
+                    <>In {cityName}, as across Ontario, net metering and financing options make solar accessible without large upfront cost. </>
+                  )}
                   Even without large provincial rebates, solar panel installation in {cityName} can be surprisingly
                   affordable. Through Ontario&apos;s net metering program, your solar system earns bill credits for
                   excess production, and our financing partner <strong>Financeit</strong> helps spread the remaining
@@ -304,8 +331,9 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
                   Many customers choose $0-down or low-down-payment solar loans where the monthly payment is
-                  similar to, or less than, their pre-solar electricity bill. This structure allows you to upgrade
-                  your home or building, reduce carbon emissions, and build long-term equity in a clean energy asset.
+                  similar to, or less than, their pre-solar electricity bill. Learn more about our{" "}
+                  <Link to="/finance" className="text-primary hover:underline">financing options</Link> and how we
+                  can help you find a plan that fits your budget.
                 </p>
               </section>
 
@@ -314,6 +342,11 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
                 <h2 className="text-2xl md:text-3xl font-semibold text-foreground">
                   Why Choose Solario for Solar in {cityName}
                 </h2>
+                {(cityKey === "kitchener" || cityKey === "waterloo" || cityKey === "cambridge" || cityKey === "hamilton") && (
+                  <p className="text-muted-foreground leading-relaxed">
+                    Solario is based in Guelph and serves {cityName} and the surrounding region. We bring the same ESA-licensed installation, 25-year warranties, and support to every project across Ontario.
+                  </p>
+                )}
                 <h3 className="text-xl font-semibold text-foreground">
                   15+ years of Ontario solar experience
                 </h3>
@@ -326,7 +359,9 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
                 <p className="text-muted-foreground leading-relaxed">
                   Every system we install is backed by a <strong>25-year panel performance warranty</strong> and
                   supported by our in-house service team. When you choose Solario, you are partnering with a local,
-                  fully certified solar installer that will be there to support your system for decades.
+                  fully certified solar installer that will be there to support your system for decades. Learn more about our{" "}
+                  <Link to="/certifications" className="text-primary hover:underline">licenses and certifications</Link>
+                  , or <Link to="/contact" className="text-primary hover:underline">contact us</Link> for a free quote.
                 </p>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
                   <li>15+ years of hands-on solar installation experience in Ontario</li>
@@ -368,15 +403,12 @@ const LocationSolarPage = ({ cityKey }: LocationSolarPageProps) => {
                   Explore Solar Services Across Ontario
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  In addition to dedicated solar panel installation in {cityName}, Solario designs and installs
-                  systems throughout the Greater Toronto Area and Southern Ontario. Learn more about our{" "}
-                  <Link
-                    to="/services/solar-installation"
-                    className="text-primary hover:text-primary-hover font-semibold"
-                  >
-                    Ontario-wide solar panel installation services
-                  </Link>{" "}
-                  or explore nearby service areas below.
+                  In addition to solar panel installation in {cityName}, we offer{" "}
+                  <Link to="/services/solar-repair" className="text-primary hover:underline">solar repair</Link>,{" "}
+                  <Link to="/services/ev-charging" className="text-primary hover:underline">EV charging</Link>,{" "}
+                  <Link to="/services/battery-storage" className="text-primary hover:underline">battery storage</Link>, and{" "}
+                  <Link to="/services/heat-pumps" className="text-primary hover:underline">heat pumps</Link> across Ontario. <Link to="/finance" className="text-primary hover:underline">Financing</Link> is available for qualified projects. Learn more about our{" "}
+                  <Link to="/services/solar-installation" className="text-primary hover:underline">solar installation services</Link> or explore nearby areas below.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {nearby.map((key) => {

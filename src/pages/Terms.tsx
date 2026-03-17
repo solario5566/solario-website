@@ -33,7 +33,11 @@ const sections = [
 const Terms = () => {
   return (
     <PageLayout>
-      <SEO title="Terms of Service" description="Terms of service for Solario Energy Inc. solar installation and energy services in Ontario." path="/terms" />
+      <SEO
+        title="Terms of Service"
+        description="Terms governing your use of Solario's website and services. Quotes, warranties, and contact information."
+        path="/terms"
+      />
       <PageHero
         title="Terms of Service"
         subtitle="Last updated: February 2025"

@@ -14,7 +14,7 @@ const NotFound = () => {
 
   return (
     <PageLayout>
-      <SEO title="Page Not Found" description="The page you're looking for doesn't exist." path={location.pathname} noindex />
+      <SEO title="Page Not Found" description="The page you're looking for doesn't exist or has been moved." path={location.pathname} noindex />
       <section className="pt-32 pb-20 min-h-[60vh] flex items-center">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">

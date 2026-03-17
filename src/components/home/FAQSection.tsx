@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+export const homeFaqs = [
   {
     question: "How much can I save with solar panels?",
     answer: "Most Ontario homeowners save 50-70% on their electricity bills. The exact savings depend on your energy usage, roof size, and sun exposure. During your free consultation, we'll provide a personalized savings estimate based on your specific situation.",
@@ -64,7 +64,7 @@ const FAQSection = () => {
           {/* Right - Accordion */}
           <div className="lg:col-span-3">
             <Accordion type="single" collapsible className="space-y-3">
-              {faqs.map((faq, index) => (
+              {homeFaqs.map((faq, index) => (
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}

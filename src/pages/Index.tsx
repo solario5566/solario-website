@@ -8,28 +8,21 @@ import Testimonials from "@/components/home/Testimonials";
 import FAQSection from "@/components/home/FAQSection";
 import CTASection from "@/components/home/CTASection";
 import SEO from "@/components/SEO";
-import { OrganizationSchema, LocalBusinessSchema } from "@/components/StructuredData";
+import { OrganizationSchema, LocalBusinessSchema, WebSiteSchema, FAQSchema } from "@/components/StructuredData";
+import { homeFaqs } from "@/components/home/FAQSection";
 
 const Index = () => {
   return (
     <PageLayout>
       <SEO
-        title="Solar Panel Installation Ontario | Solario Energy"
-        description="Solario Energy provides professional solar panel installation across Ontario including Toronto, Mississauga, Vaughan, and surrounding cities. 25-year panel warranty and financing available."
-        keywords={[
-          "solar panel installation ontario",
-          "solar panel installation",
-          "commercial solar installation",
-          "solar maintenance",
-          "solar installers",
-          "solar companies",
-          "solar installers toronto",
-          "solar company mississauga",
-        ]}
+        title="Solario | Ontario's Trusted Solar Installer - Toronto & GTA"
+        description="Solario installs premium solar systems, EV chargers, battery storage, and heat pumps for Ontario homes and businesses."
         path="/"
       />
       <OrganizationSchema />
       <LocalBusinessSchema />
+      <WebSiteSchema />
+      <FAQSchema faqs={homeFaqs} />
       <HeroSection />
       <TrustBar />
       <ServicesOverview />

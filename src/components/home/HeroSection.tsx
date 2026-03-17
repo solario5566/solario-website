@@ -39,7 +39,7 @@ const HeroSection = () => {
           {/* Trust Indicators */}
           <div className="space-y-2.5 sm:space-y-3 mb-8 sm:mb-10 animate-slide-up" style={{ animationDelay: "0.2s" }}>
             {[
-              "Cut electricity bills by up to our 80%",
+              "Cut electricity bills by up to 80%",
               "25-year performance warranty",
               "Professional installation in 2-3 Weeks, Not Months!",
             ].map((item, index) => (

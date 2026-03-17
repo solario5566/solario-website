@@ -11,6 +11,7 @@ const services = [
     id: "solar",
     icon: Sun,
     title: "Residential Solar",
+    detailPath: "/services/solar-installation",
     description:
       "Transform your home into a power station with our premium solar panel installations. Designed and customized for Ontario homes, our systems maximize energy production and savings.",
     features: [
@@ -32,6 +33,7 @@ const services = [
     id: "repair",
     icon: Wrench,
     title: "Solar Repair / Panel Upgrade",
+    detailPath: "/services/solar-repair",
     description:
       "Diagnose issues, replace damaged components, and upgrade older solar panel systems for better safety, reliability, and performance.",
     features: [
@@ -52,6 +54,7 @@ const services = [
     id: "ev",
     icon: Zap,
     title: "EV Charging Stations",
+    detailPath: "/services/ev-charging",
     description:
       "Power your electric vehicle at home with professional Level 2 charger installation. Fast, convenient, and compatible with all major EV brands.",
     features: [
@@ -73,6 +76,7 @@ const services = [
     id: "battery",
     icon: Battery,
     title: "Battery Storage",
+    detailPath: "/services/battery-storage",
     description:
       "Store excess solar energy for use when you need it most. Keep your home powered during outages and maximize your solar investment.",
     features: [
@@ -94,6 +98,7 @@ const services = [
     id: "heatpump",
     icon: Flame,
     title: "Heat Pumps",
+    detailPath: "/services/heat-pumps",
     description:
       "Efficient heating and cooling for year-round comfort. Heat pumps use less energy than traditional systems while keeping your home comfortable in any season.",
     features: [
@@ -116,7 +121,11 @@ const services = [
 const Services = () => {
   return (
     <PageLayout>
-      <SEO title="Our Services" description="Complete energy solutions: solar panels, EV chargers, battery storage, and heat pumps for Ontario homes and businesses." path="/services" />
+      <SEO
+        title="Solar, EV Charging, Batteries & Heat Pumps"
+        description="Full-service energy solutions for Ontario: solar installation, solar repair, EV charging, battery storage, and heat pumps. One team from quote to completion."
+        path="/services"
+      />
       <PageHero
         eyebrow="Our Services"
         title="Complete energy solutions for your home or business"
@@ -209,12 +218,19 @@ const Services = () => {
                     </ul>
                   </div>
 
-                  <Button variant="hero" size="default" asChild>
-                    <Link to="/contact" className="inline-flex items-center gap-2">
-                      Get a Free Quote
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </Button>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button variant="hero" size="default" asChild>
+                      <Link to="/contact" className="inline-flex items-center gap-2">
+                        Get a Free Quote
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </Button>
+                    {service.detailPath && (
+                      <Link to={service.detailPath} className="text-sm font-medium text-primary hover:underline">
+                        Learn more
+                      </Link>
+                    )}
+                  </div>
                 </div>
 
                 <div className={index % 2 === 1 ? "lg:order-1" : ""}>

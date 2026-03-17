@@ -118,8 +118,8 @@ const Certifications = () => {
   return (
     <PageLayout>
       <SEO
-        title="Certifications"
-        description="ESA Licensed, TSSA Registered, Tesla Certified, and NABCEP Certified. Solario maintains the highest industry standards."
+        title="Licenses & Certifications"
+        description="ESA licensed, TSSA registered, Tesla and SolarEdge certified, NABCEP certified. Solario's credentials for safe, compliant Ontario installations."
         path="/certifications"
       />
 
@@ -243,8 +243,9 @@ const Certifications = () => {
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
               Ready to work with a fully licensed and insured installer?
             </h2>
-            <p className="text-muted-foreground mb-8">
-              Get a free, no-obligation quote. Our team will walk you through options and next steps.
+            <p className="text-muted-foreground mb-6">
+              See our <Link to="/services" className="text-primary hover:underline">solar installation, EV charging, battery storage, and heat pump services</Link>, or
+              get a free quote. Our team will walk you through options and next steps.
             </p>
             <Button variant="hero" size="lg" asChild>
               <Link to="/contact" className="inline-flex items-center gap-2">

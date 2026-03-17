@@ -30,7 +30,7 @@ const Privacy = () => {
     <PageLayout>
       <SEO
         title="Privacy Policy"
-        description="Solario's privacy policy. Learn how we collect, use, and protect your personal information."
+        description="How Solario collects, uses, and protects your information when you use our website and request quotes or contact us."
         path="/privacy"
       />
       <PageHero

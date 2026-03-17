@@ -142,8 +142,8 @@ const About = () => {
   return (
     <PageLayout>
       <SEO
-        title="About Us"
-        description="Ontario's trusted solar installer. 1,500+ systems installed. Professional solar solutions with quality, clarity, and care. Meet the Solario team."
+        title="About Solario"
+        description="Meet the team behind Ontario's trusted solar installations. Quality-first workmanship, clear communication, and support from quote to long-term care."
         path="/about"
       />
 
@@ -176,7 +176,7 @@ const About = () => {
             </h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">
               <p>
-                Solario exists to make solar adoption straightforward, reliable, and worth the investment. We focus on doing the job properly—quality workmanship, honest recommendations, and a smooth process from first contact to long-term support.
+                Solario exists to make solar adoption straightforward, reliable, and worth the investment. We have completed more than 2,400 installations across Ontario and are trusted by over 1,500 homeowners and businesses. We focus on doing the job properly—quality workmanship, honest recommendations, and a smooth process from first contact to long-term support.
               </p>
               <p>
                 We are not here to oversell or rush installations. We are here to design and install systems that perform, to communicate clearly at every step, and to stand behind our work. Our reputation is built on customers who trust us with a major home investment and feel confident in their choice.
@@ -328,8 +328,9 @@ const About = () => {
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
               Work with a team focused on quality, clarity, and long-term value
             </h2>
-            <p className="text-muted-foreground mb-8">
-              Get a free, no-obligation quote. We will walk you through your options and next steps.
+            <p className="text-muted-foreground mb-6">
+              Explore our <Link to="/services" className="text-primary hover:underline">solar, EV charging, battery, and heat pump services</Link>, or
+              get a free, no-obligation quote. We will walk you through your options and next steps.
             </p>
             <Button variant="hero" size="lg" asChild>
               <Link to="/contact" className="inline-flex items-center gap-2">

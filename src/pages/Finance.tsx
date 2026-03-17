@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import CTASection from "@/components/home/CTASection";
 import SEO from "@/components/SEO";
+import { FAQSchema } from "@/components/StructuredData";
 
 const whyFinancingMatters = [
   {
@@ -163,34 +164,55 @@ const Finance = () => {
   return (
     <PageLayout>
       <SEO
-        title="Solar Financing Options"
-        description="Flexible solar financing and payment plans for Ontario. Monthly payments, loan options, and rebate guidance. Make going solar more accessible."
+        title="Solar & Clean Energy Financing | Payment Plans Ontario"
+        description="Financing for Ontario solar, battery storage, heat pumps, and EV charging: monthly payment plans, loan options, and rebate guidance. Make the switch without the full upfront cost."
         path="/finance"
       />
+      <FAQSchema faqs={faqs} />
 
       <PageHero
         eyebrow="Financing"
-        title="Make the switch to solar without the full upfront cost"
-        subtitle="Flexible financing that makes clean energy more accessible."
-        description="Explore flexible payment options, financing pathways, and available incentive guidance so you can start your solar project with a plan that fits your budget. We help you understand your options—no pressure, no obligation."
+        title="Solar and clean energy financing that fits your budget"
+        subtitle="Payment plans and financing so you can go solar—or add battery, EV charging, or heat pumps—without a large upfront payment."
+        description="We help Ontario homeowners and businesses understand payment options, loan terms, and rebate pathways for solar, battery storage, EV chargers, and heat pumps. Get a clear quote and a financing path that works for you—no pressure, no obligation."
       >
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+          <span className="flex items-center gap-1.5">
+            <Check className="w-4 h-4 text-primary shrink-0" />
+            Solar, battery, heat pumps & EV
+          </span>
           <span className="flex items-center gap-1.5">
             <Check className="w-4 h-4 text-primary shrink-0" />
             Monthly payment plans
           </span>
           <span className="flex items-center gap-1.5">
             <Check className="w-4 h-4 text-primary shrink-0" />
-            Loan options
-          </span>
-          <span className="flex items-center gap-1.5">
-            <Check className="w-4 h-4 text-primary shrink-0" />
-            Rebate guidance
+            Rebate & incentive guidance
           </span>
         </div>
       </PageHero>
 
-      {/* 2. Why financing matters */}
+      {/* What financing covers & who it's for */}
+      <section className="py-12 sm:py-16 md:py-20 bg-secondary overflow-x-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              What we offer and who it's for
+            </h2>
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              Solario’s financing options cover our full range of clean energy projects: <Link to="/services/solar-installation" className="text-primary hover:underline">solar panel installation</Link>, <Link to="/services/battery-storage" className="text-primary hover:underline">battery storage</Link>, <Link to="/services/heat-pumps" className="text-primary hover:underline">heat pumps</Link>, and <Link to="/services/ev-charging" className="text-primary hover:underline">EV charger installation</Link>. We don’t just install the system—we help you understand how to pay for it with monthly payment plans, loan options, and guidance on federal and provincial incentives that can lower your net cost.
+            </p>
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              This is for Ontario homeowners and businesses who want to move forward without tying up savings in one large payment. Whether you’re going solar for the first time, adding a battery or EV charger, or upgrading to a heat pump, we walk you through options that fit your cash flow and goals. Our team explains terms in plain language and coordinates with our financing partners so you get a clear path from quote to activation.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Financing terms and eligibility depend on your project and situation. We outline what’s available during your consultation so you can decide with confidence.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why financing matters */}
       <section className="py-12 sm:py-16 md:py-20 bg-background overflow-x-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
@@ -257,7 +279,39 @@ const Finance = () => {
         </div>
       </section>
 
-      {/* 4. How the financing process works */}
+      {/* Decision support: use cases & when it pairs well */}
+      <section className="py-12 sm:py-16 md:py-20 bg-background overflow-x-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 text-center">
+              When financing makes sense
+            </h2>
+            <p className="text-muted-foreground text-center mb-8 max-w-xl mx-auto">
+              Common situations where payment plans and financing help you move forward.
+            </p>
+            <ul className="space-y-4 text-muted-foreground">
+              <li className="flex gap-3">
+                <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span><strong className="text-foreground">First-time solar:</strong> You want to lock in lower energy costs and reduce bills but prefer to spread the cost over time instead of paying upfront. Many customers find monthly payments close to or below what they used to pay for electricity.</span>
+              </li>
+              <li className="flex gap-3">
+                <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span><strong className="text-foreground">Adding battery or EV charging:</strong> You already have or are planning solar and want to add <Link to="/services/battery-storage" className="text-primary hover:underline">battery storage</Link> or an <Link to="/services/ev-charging" className="text-primary hover:underline">EV charger</Link>. Financing can cover the added equipment and installation so you don’t pay for everything at once.</span>
+              </li>
+              <li className="flex gap-3">
+                <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span><strong className="text-foreground">Heat pump upgrade:</strong> You’re replacing or supplementing fossil-fuel heating with a <Link to="/services/heat-pumps" className="text-primary hover:underline">heat pump</Link>. Rebates can reduce the net cost; financing can cover the remainder and make the project affordable on your timeline.</span>
+              </li>
+              <li className="flex gap-3">
+                <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span><strong className="text-foreground">Commercial or multi-project:</strong> Your business or property has multiple needs—solar, EV charging for a fleet, or backup power. We can discuss financing that fits the scope and your cash flow.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* How the financing process works */}
       <section className="py-12 sm:py-16 md:py-20 bg-background overflow-x-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -291,8 +345,48 @@ const Finance = () => {
         </div>
       </section>
 
-      {/* 5. Benefits / why customers choose financing */}
+      {/* Why choose Solario for financing */}
       <section className="py-12 sm:py-16 md:py-20 bg-secondary overflow-x-hidden">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 text-center">
+              Why choose Solario for financing
+            </h2>
+            <p className="text-muted-foreground text-center mb-10 max-w-xl mx-auto">
+              One team from quote to activation—with clear financing options and no pressure.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-card border border-border rounded-lg p-6">
+                <h3 className="font-semibold text-foreground mb-2">Certified installer, clear process</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Solario is ESA licensed, TSSA registered where applicable, and works with qualified financing partners. We focus on clean energy installation and coordination—so when we discuss financing, it’s in the context of a real project with a clear scope and timeline. Learn more in our <Link to="/certifications" className="text-primary hover:underline">certifications</Link>.
+                </p>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-6">
+                <h3 className="font-semibold text-foreground mb-2">Support from quote to completion</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Our team explains payment options, terms, and how rebates apply—in plain language. We handle the coordination between your project, permits, and financing so you’re not left navigating paperwork alone. Questions before, during, or after the install are answered by our in-house team.
+                </p>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-6">
+                <h3 className="font-semibold text-foreground mb-2">Incentive guidance built in</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Federal and provincial programs can reduce the net cost of solar, heat pumps, and other clean energy upgrades. We help you understand what may apply to your project and how incentives work with financing so you get the full benefit.
+                </p>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-6">
+                <h3 className="font-semibold text-foreground mb-2">No obligation to proceed</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Your consultation includes a clear quote and a summary of financing pathways. You decide whether to move forward. We don’t pressure; we inform. <Link to="/contact" className="text-primary hover:underline">Contact us</Link> for a free quote and we’ll walk you through the options.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits / why customers choose financing */}
+      <section className="py-12 sm:py-16 md:py-20 bg-background overflow-x-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">
@@ -355,15 +449,15 @@ const Finance = () => {
         </div>
       </section>
 
-      {/* 7. Closing CTA */}
+      {/* Closing CTA */}
       <section className="py-12 sm:py-16 md:py-20 bg-secondary overflow-x-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              See what payment options may fit your project
+              Get a quote and see what payment options fit your project
             </h2>
-            <p className="text-muted-foreground mb-8">
-              Talk to our team about financing pathways that can help make your solar project more accessible. Get a tailored quote and learn what options may work for you.
+            <p className="text-muted-foreground mb-6">
+              Financing is available for <Link to="/services/solar-installation" className="text-primary hover:underline">solar</Link>, <Link to="/services/battery-storage" className="text-primary hover:underline">battery storage</Link>, <Link to="/services/heat-pumps" className="text-primary hover:underline">heat pumps</Link>, and <Link to="/services/ev-charging" className="text-primary hover:underline">EV charging</Link>. Tell us your goals and we’ll provide a tailored quote and a clear picture of financing options—no obligation. Ready to start? <Link to="/contact" className="text-primary hover:underline">Get your free quote</Link>.
             </p>
             <Button variant="hero" size="lg" asChild>
               <Link to="/contact" className="inline-flex items-center gap-2">

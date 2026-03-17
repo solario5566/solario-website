@@ -1,15 +1,18 @@
 import { Helmet } from "react-helmet-async";
 
+const DOMAIN = "https://solario.ca";
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Solario Energy Inc.",
-  url: "https://solario.ca",
-  logo: "https://solario.ca/solario-logo.png",
+  url: DOMAIN,
+  logo: `${DOMAIN}/solario-logo.png`,
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+1-382-342-0754",
     contactType: "sales",
+    email: "info@solario.ca",
     areaServed: "CA",
     availableLanguage: "English",
   },
@@ -19,10 +22,10 @@ const organizationSchema = {
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://solario.ca/#localbusiness",
+  "@id": `${DOMAIN}/#localbusiness`,
   name: "Solario Energy Inc.",
-  image: "https://solario.ca/og-image.png",
-  url: "https://solario.ca",
+  image: `${DOMAIN}/og-image.png`,
+  url: DOMAIN,
   telephone: "+1-382-342-0754",
   email: "info@solario.ca",
   address: {
@@ -39,11 +42,6 @@ const localBusinessSchema = {
     longitude: -80.2482,
   },
   priceRange: "$$",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    reviewCount: "312",
-  },
   areaServed: [
     { "@type": "City", name: "Toronto" },
     { "@type": "City", name: "Mississauga" },
@@ -58,6 +56,17 @@ const localBusinessSchema = {
     { "@type": "City", name: "Oakville" },
     { "@type": "City", name: "Burlington" },
   ],
+};
+
+const webSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${DOMAIN}/#website`,
+  name: "Solario Energy Inc.",
+  url: DOMAIN,
+  description: "Professional solar panel installation, EV charging, battery storage, and heat pumps for Ontario homes and businesses.",
+  publisher: { "@id": `${DOMAIN}/#localbusiness` },
+  inLanguage: "en-CA",
 };
 
 export const OrganizationSchema = () => (
@@ -75,3 +84,37 @@ export const LocalBusinessSchema = () => (
     </script>
   </Helmet>
 );
+
+export const WebSiteSchema = () => (
+  <Helmet>
+    <script type="application/ld+json">
+      {JSON.stringify(webSiteSchema)}
+    </script>
+  </Helmet>
+);
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export const FAQSchema = ({ faqs }: { faqs: FAQItem[] }) => {
+  if (!faqs?.length) return null;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  };
+  return (
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    </Helmet>
+  );
+};

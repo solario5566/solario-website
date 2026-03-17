@@ -3,8 +3,15 @@ import PageHero from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Check, ArrowRight, ShieldCheck, FileCheck, Wrench, Headphones } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import CTASection from "@/components/home/CTASection";
 import SEO from "@/components/SEO";
+import { FAQSchema } from "@/components/StructuredData";
 
 const whatYouGet = [
   "Free site assessment and custom system design",
@@ -36,10 +43,21 @@ const processSteps = [
   { step: "4", title: "Activation & handoff", text: "Final inspection, utility approval, and handoff with monitoring access and support." },
 ];
 
+const solarInstallationFaqs = [
+  { question: "How long does the full process take from quote to activation?", answer: "Most projects take 4–8 weeks from initial consultation to system activation. The timeline includes design, permits, utility approval, installation (typically 1–3 days), and final inspection. We manage the process and keep you informed at each step." },
+  { question: "What warranties are included?", answer: "Every installation includes a 10-year workmanship warranty and 25-year panel performance warranty. Inverters carry manufacturer warranties (often 10–25 years depending on equipment). We stand behind our work and remain your point of contact for support." },
+  { question: "Do you handle permits and inspections?", answer: "Yes. We handle design, permit applications, ESA inspections, and utility interconnection paperwork. You don't need to coordinate with the utility or authorities—we do that as part of the project." },
+];
+
 const SolarInstallation = () => {
   return (
     <PageLayout>
-      <SEO title="Solar Panel Installation" description="Professional solar installation for Ontario homes and businesses. 25-year warranty, ESA licensed, free quotes." path="/services/solar-installation" />
+      <SEO
+        title="Solar Panel Installation"
+        description="Full-service solar installation for Ontario: design, permits, installation, and 25-year warranty. ESA licensed. Free assessment and quote."
+        path="/services/solar-installation"
+      />
+      <FAQSchema faqs={solarInstallationFaqs} />
 
       <PageHero
         eyebrow="Solar Installation"
@@ -61,8 +79,11 @@ const SolarInstallation = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
               Tailored solar systems for your property
             </h2>
-            <p className="text-muted-foreground mb-6 leading-relaxed">
+            <p className="text-muted-foreground mb-4 leading-relaxed">
               Our team designs and installs custom solar systems to match your roof, energy use, and goals. We use premium Tier-1 panels and inverters for long-term reliability and maximum production. From initial assessment through permitting, installation, and grid connection, we manage the process so you can focus on the result.
+            </p>
+            <p className="text-muted-foreground mb-6 leading-relaxed">
+              This service is for homeowners and businesses across Ontario who want to generate their own electricity, reduce bills, and benefit from a 25-year panel warranty and ESA-licensed installation.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               Every installation includes real-time monitoring so you can track production and savings. We also help with rebate applications where applicable.
@@ -193,15 +214,41 @@ const SolarInstallation = () => {
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
               Warranty & support
             </h2>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed mb-4">
               All installations include a 10-year workmanship warranty and 25-year panel performance warranty. Our local team is available for questions and support for the life of your system.
+            </p>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              We are ESA licensed and hold industry certifications—see our <Link to="/certifications" className="text-primary hover:underline">licenses and certifications</Link>. Financing can make going solar more accessible—explore <Link to="/finance" className="text-primary hover:underline">financing options</Link> or <Link to="/contact" className="text-primary hover:underline">contact us</Link> for a free quote.
             </p>
           </div>
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="py-12 sm:py-16 md:py-20 bg-background overflow-x-hidden">
+        <div className="container mx-auto px-4 sm:px-0">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
+              Frequently asked questions
+            </h2>
+            <Accordion type="single" collapsible className="space-y-3">
+              {solarInstallationFaqs.map((faq, i) => (
+                <AccordionItem key={i} value={`faq-${i}`} className="bg-card border border-border rounded-xl px-5">
+                  <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-4">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-4">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="py-12 sm:py-16 bg-background overflow-x-hidden">
+      <section className="py-12 sm:py-16 bg-secondary overflow-x-hidden">
         <div className="container mx-auto px-4 sm:px-0">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">

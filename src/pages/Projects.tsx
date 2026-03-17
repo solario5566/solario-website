@@ -103,7 +103,11 @@ const projects = [
 const Projects = () => {
   return (
     <PageLayout>
-      <SEO title="Projects" description="Browse Solario's portfolio of solar installations across the GTA. Residential and commercial projects with real savings data." path="/projects" />
+      <SEO
+        title="Our Projects"
+        description="Solar installation projects across the GTA and Ontario. Residential and commercial case studies and portfolio."
+        path="/projects"
+      />
       <PageHero
         eyebrow="Our Portfolio"
         title="See our work across Ontario"

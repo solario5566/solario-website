@@ -53,7 +53,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/services#repair" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
+                <Link to="/services/solar-repair" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   Solar Repair
                 </Link>
               </li>
@@ -82,6 +82,11 @@ const Footer = () => {
               <li>
                 <Link to="/about" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
                   About
+                </Link>
+              </li>
+              <li>
+                <Link to="/finance" className="block py-2 text-muted-foreground hover:text-primary transition-colors text-sm touch-manipulation">
+                  Finance
                 </Link>
               </li>
               <li>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import PageLayout from "@/components/layout/PageLayout";
 import PageHero from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/button";
@@ -86,7 +87,7 @@ const Contact = () => {
     <PageLayout>
       <SEO
         title="Contact Us"
-        description="Request a free solar quote for your Ontario home or business. Our team responds within 24 hours."
+        description="Get a free solar or energy quote. Solario serves the GTA and Ontario—request a callback or quote online. We respond within 24 hours."
         path="/contact"
       />
 
@@ -105,7 +106,7 @@ const Contact = () => {
             <div className="lg:col-span-2 min-w-0">
               <div className="bg-card border border-border rounded-xl p-5 sm:p-6 md:p-8">
                 <p className="text-sm text-muted-foreground mb-5 sm:mb-6">
-                  Complete the form below and we'll get back to you within 24 hours. No obligation.
+                  Complete the form below and we'll get back to you within 24 hours. No obligation. Not sure which service you need? See our <Link to="/services" className="text-primary hover:underline">services overview</Link> or <Link to="/finance" className="text-primary hover:underline">financing options</Link>.
                 </p>
                 <form
                   name="quote"

@@ -16,8 +16,8 @@ const ProjectDetail = () => {
   return (
     <PageLayout>
       <SEO
-        title={`${project.title} | Solario`}
-        description={`${project.description} — ${project.systemSize} ${project.type.toLowerCase()} solar system in ${project.location}.`}
+        title={project.title}
+        description={`${project.description} — ${project.systemSize} ${project.type.toLowerCase()} solar in ${project.location}. View the project.`}
         path={`/projects/${project.slug}`}
       />
 
