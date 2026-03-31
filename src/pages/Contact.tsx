@@ -7,6 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock, Loader2 } from "lucide-react";
 import SEO from "@/components/SEO";
+import { getAttributionFieldsForLeadSubmit } from "@/lib/attribution";
+import { trackEvent } from "@/lib/analytics";
+
+/** Netlify Forms: POST root path so the submission is accepted for the SPA shell (`index.html` registers the form). */
+const NETLIFY_FORM_ACTION = "/";
 
 const serviceAreas = [
   "Greater Toronto Area",
@@ -60,43 +65,54 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const isDev = import.meta.env.DEV;
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitError(null);
     const form = e.currentTarget;
+    const pagePathAtSubmit =
+      typeof window !== "undefined"
+        ? `${window.location.pathname}${window.location.search}`
+        : "/contact";
+
     const formData = new FormData(form);
-    const params: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      params[key] = value instanceof File ? "" : String(value);
+    const attribution = getAttributionFieldsForLeadSubmit(pagePathAtSubmit);
+    Object.entries(attribution).forEach(([key, value]) => {
+      formData.set(key, value);
     });
-    const body = new URLSearchParams(params).toString();
+
+    const urlParams = new URLSearchParams();
+    formData.forEach((value, key) => {
+      urlParams.append(key, value instanceof File ? "" : String(value));
+    });
+    const body = urlParams.toString();
 
     setIsSubmitting(true);
+    let willNavigate = false;
     try {
-      const res = await fetch("/contact", {
+      const res = await fetch(NETLIFY_FORM_ACTION, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body,
       });
-      if (res.ok || res.status === 302) {
-        window.location.href = "/thanks";
+      if (!res.ok) {
+        setSubmitError(
+          "We couldn't send your message right now. Please try again in a moment or call us directly."
+        );
         return;
       }
-      if (isDev) {
-        window.location.href = "/thanks";
-        return;
-      }
-      setSubmitError("We couldn't send your message right now. Please try again in a moment or call us directly.");
+      willNavigate = true;
+      trackEvent("generate_lead", { form_name: "quote", method: "contact_form" });
+      window.setTimeout(() => {
+        window.location.assign("/thanks");
+      }, 120);
     } catch {
-      if (isDev) {
-        window.location.href = "/thanks";
-        return;
-      }
-      setSubmitError("We couldn't send your message right now. Please try again in a moment or call us directly.");
+      setSubmitError(
+        "We couldn't send your message right now. Please try again in a moment or call us directly."
+      );
     } finally {
-      setIsSubmitting(false);
+      if (!willNavigate) {
+        setIsSubmitting(false);
+      }
     }
   };
 

@@ -14,7 +14,10 @@ const Thanks = () => {
         noindex
       />
 
-      <section className="pt-24 sm:pt-28 pb-20 sm:pb-24 md:pb-28 bg-navy min-h-[70vh] flex items-center overflow-x-hidden">
+      <section
+        className="pt-24 sm:pt-28 pb-20 sm:pb-24 md:pb-28 bg-navy min-h-[70vh] flex items-center overflow-x-hidden"
+        data-solario-conversion-page="lead-quote-thanks"
+      >
         <div className="container mx-auto px-4 sm:px-0">
           <div className="max-w-xl mx-auto text-center">
             <div
